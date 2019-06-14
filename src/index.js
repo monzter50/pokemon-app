@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './scss/styles.scss';
 import PokeApp from './container/PokeContainer';
 import * as serviceWorker from './serviceWorker';
 

@@ -1,0 +1,14 @@
+*,
+*::before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin : 0;
+  font-family: 'Fira Sans', sans-serif;
+}
+h1,h2,h3,p{
+  margin: 0;
+  padding: 0;
+}

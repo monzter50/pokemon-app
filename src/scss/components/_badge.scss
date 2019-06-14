@@ -1,0 +1,63 @@
+.badge,[class^=badge-]{
+    padding: .3em .8em;
+    margin: .3em .3em .3em 0 ;
+    display: inline-block;
+    border-radius: .4em;
+    color:white;
+    background: var(--type-color);
+}
+.badge--fire, .badge--default{
+    --type-color: var(--fire);
+    
+}
+.badge--flying{
+    --type-color: var(--flying);
+} 
+.badge--bug{
+    --type-color: var(--bug);
+} 
+.badge--poison{
+    --type-color: var(--poison);
+} 
+.badge--water{
+    --type-color: var(--water);
+} 
+.badge--grass{
+    --type-color: var(--grass);
+}
+.badge--dark{
+    --type-color: var(--dark);
+}
+.badge--dragon{
+    --type-color: var(--dragon);
+} 
+.badge--electric{
+    --type-color: var(--electric);
+}   
+.badge--fairy{
+    --type-color: var(--fairy);
+}
+.badge--fighting{
+    --type-color: var(--fighting);
+}
+.badge--ghost{
+    --type-color: var(--ghost);
+} 
+.badge--ground{
+    --type-color:var(--ground);
+}
+.badge--ice{
+    --type-color: var(--ice);
+}  
+.badge--normal{
+    --type-color: var(--normal);
+} 
+.badge--psychic{
+    --type-color: var(--psychic);
+}
+.badge--rock{
+    --type-color: var(--rock);
+} 
+.badge--steel{
+    --type-color: var(--steel);
+}                  
