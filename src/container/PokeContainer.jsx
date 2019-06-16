@@ -10,7 +10,7 @@ class PokeLayout extends Component{
         }
     }
     getPokemons(){
-        fetch(`https://pokeapi.co/api/v2/pokemon/`)
+        fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=149`)
         .then(response => response.json())
         .catch(error => 
             this.setState({

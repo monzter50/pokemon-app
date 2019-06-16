@@ -7,7 +7,8 @@ class PokeCard extends Component{
             url:'https://pokeapi.co/api/v2/pokemon/',
             imgUrl:'',
             stats:{
-                types:null
+                types:null,
+                name:''
             }
         }
     }
@@ -23,7 +24,9 @@ class PokeCard extends Component{
         .then(response => 
           this.setState({
               stats:{
-                  types:response.types || null
+                types:response.types || null,
+                name:response.name || '',
+                avatar:response.sprites.front_default || ''
 
               }
           })
@@ -32,14 +35,12 @@ class PokeCard extends Component{
     }
     componentDidMount(){
         this.getStatsPokemon()
-        const {id} = this.props
-        console.log("types did",this.state.stats)
-        const index = id +1;
-        const imgUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${index}.png?raw=true`
-       this.setState({
-        imgUrl,
-        
-       })
+     
+    //     const index = id +1;
+    //     const imgUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${index}.png?raw=true`
+    //     this.setState({
+    //         imgUrl
+    //    })
     }
 
     render(){
@@ -52,16 +53,16 @@ class PokeCard extends Component{
               
             ):['default']
         // const type = stats.types[0] || 'default';
-        console.log('badge',type[0])
+        console.log('badge',stats.avatar)
         
         return(
             <div className="card">
                 <div className="card__header">
                     <div className={`avatar type--${type[0]}`}>
-                        <img src={this.state.imgUrl} className="card__image" alt=""/>
+                        <img src={stats.avatar} className="card__image" alt=""/>
                     </div>
                     
-                    <h3>{this.props.name}</h3>
+                    <h3>{stats.name}</h3>
                 </div>
             <article className="card__container">
                 {
