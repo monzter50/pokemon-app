@@ -1,5 +1,9 @@
 import React,{Component} from 'react';
 import PokeList from '../components/List/PokemonList'
+import {connect} from 'react-redux';
+// import fecthPokemons from '../helpers/fecthPokemons';
+import {fecthPokemons} from '../redux/actions';
+import { bindActionCreators } from 'redux';
 class PokeLayout extends Component{
     constructor(props){
         super(props)
@@ -9,40 +13,32 @@ class PokeLayout extends Component{
             loading:true
         }
     }
-    getPokemons(){
-        fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=149`)
-        .then(response => response.json())
-        .catch(error => 
-            this.setState({
-                error: true
-            })
-            
-        )
-        .then(response => 
-            this.setState({
-                pokemons : response.results
-            })
-        //  console.log(response)
-            
-        ).finally(() => this.loading = false);
-    }
-
+   
     componentDidMount(){
-       this.getPokemons()
+     
 
     }
     
     render(){   
-     
-        const {pokemons} = this.state;
-        console.log('Success:',pokemons)
+     console.log("Container")
         return(
             <>
-
-                <PokeList pokemons={pokemons}/>
+                <PokeList />
             </>
         )
     }
 }
+//  const mapStateToProps =state=>({
+	
+// 		pokemons: state.pokemons
+	
+// })
 
-export default PokeLayout;
+// const mapDispatchToProps ={
+// 	fecthPokemons
+// }
+
+export default connect(
+    // mapStateToProps, 
+    // mapDispatchToProps
+    )(PokeLayout);

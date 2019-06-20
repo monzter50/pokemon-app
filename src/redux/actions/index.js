@@ -1,21 +1,56 @@
-export const SET_POKEMON = "SET_POKEMON";
-export const SET_POKEMON_DATA = "SET_POKEMON_DATA";
 
-const setPokemon = payload => ({ type:SET_POKEMON, payload});
-const setPokemonData = payload => ({type:SET_POKEMON_DATA,payload});
+export const FETCH_POKEMONS_PENDING = 'FETCH_POKEMONS_PENDING';
+export const FETCH_POKEMONS_SUCCESS = 'FETCH_POKEMONS_SUCCESS';
+export const FETCH_POKEMONS_ERROR = 'FETCH_POKEMONS_ERROR';
+export const FETCH_SELECT_POKEMON_PENDING = 'FETCH_SELECT_POKEMON_PENDING';
+export const FETCH_SELECT_POKEMON_ERROR = 'FETCH_SELECT_POKEMON_ERROR';
+export const FETCH_SELECT_POKEMON_SUCCESS = 'FETCH_SELECT_POKEMON_SUCCESS';
+const fetchPokemonsPending = () => ({type: FETCH_POKEMONS_PENDING})
+const fetchPokemonsSuccess = payload => ({type: FETCH_POKEMONS_SUCCESS,payload})
+const fetchPokemonsError =  error =>({type: FETCH_POKEMONS_ERROR,error})
+const fetchSelectPokemonSuccess = payload => ({type: FETCH_SELECT_POKEMON_SUCCESS,payload})
+const fetchSelectPokemonError = error => ({type: FETCH_SELECT_POKEMON_ERROR,error})
+const fetchSelectPokemonPending = () => ({type: FETCH_SELECT_POKEMON_PENDING})
 
-export const setSeletedPokemon = payload => {
-    return dispatch => {
-        //Activas en el estado un indicador de busqueda de datos
-        dispatch(setPokemon(payload));
+
+export const fecthPokemons =()=>{
+    
+    return dispatch  =>{
+        dispatch(fetchPokemonsPending())
+        fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10`)
+        .then(response => response.json())
+       
+        .then(response => {
+            console.log("response",response.results)
+
+            dispatch(fetchPokemonsSuccess(response.results))
+            return response.results;
+
+        })
+        .catch(error => 
+            dispatch(fetchPokemonsError(error))
+        )
     }
-};
+}
 
-export const getDataPeople = ()=>{
+export const fecthPokemon =(name)=>{
+    
+    return dispatch  =>{
+        dispatch(fetchSelectPokemonPending())
+        fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+        .then(response => response.json())
+       
+        .then(response => {
+            const {name,types} = response
+            dispatch(fetchSelectPokemonSuccess({name,types}))
+            return {
+                name,
+                types
+            };
 
-    return dispatch => {
-        console.log("ejecutando funcion");
-        //Activas en el estado un indicador de busqueda de datos
-        dispatch(setPokemonData());
+        })
+        .catch(error => 
+            dispatch(fetchSelectPokemonError(error))
+        )
     }
 }

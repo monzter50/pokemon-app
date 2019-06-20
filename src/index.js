@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import { store, history } from "./redux/store";
+import { store } from "./redux/store";
 import './scss/styles.scss';
 import PokeApp from './container/PokeContainer';
 import * as serviceWorker from './serviceWorker';
