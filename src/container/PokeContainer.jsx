@@ -14,9 +14,8 @@ class PokeLayout extends Component{
         }
     }
    
-    componentDidMount(){
-     
-
+    componentDidMount(){    
+        this.props.fecthPokemons()
     }
     
     render(){   
@@ -28,17 +27,17 @@ class PokeLayout extends Component{
         )
     }
 }
-//  const mapStateToProps =state=>({
+ const mapStateToProps =state=>({
 	
-// 		pokemons: state.pokemons
+		pokemons: state.pokemons
 	
-// })
+})
 
-// const mapDispatchToProps ={
-// 	fecthPokemons
-// }
+const mapDispatchToProps ={
+	fecthPokemons
+}
 
 export default connect(
-    // mapStateToProps, 
-    // mapDispatchToProps
+    mapStateToProps, 
+    mapDispatchToProps
     )(PokeLayout);

@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers';
 const initinialState = {
     pokemons:[],
-    stats:  {},
+    stats:  [],
     progress:{
         loading: false,
         card_loading:false

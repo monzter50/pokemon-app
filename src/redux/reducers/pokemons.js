@@ -1,22 +1,32 @@
 import {FETCH_POKEMONS_PENDING, FETCH_POKEMONS_SUCCESS, FETCH_POKEMONS_ERROR} from '../../redux/actions'
+const initinialState = {
+    pokemons:[],
+    loading: false,
+    error: false
+   
+};
 
-export const pokemonsReducers = (state={},action)=>{
+export const pokemonsReducers = (state=initinialState,action)=>{
+    console.log(state)
     switch(action.type){
         case FETCH_POKEMONS_PENDING: 
             return {
-                progress:{loading: true}
+                ...state,
+               loading: true
             }
         case FETCH_POKEMONS_SUCCESS:
             console.log("state",state)
             console.log("reducers action",action.payload)
             return {
-                progress:{loading: false},
+                ...state,
+                loading: false,
                 pokemons: action.payload
             }
         case FETCH_POKEMONS_ERROR:
             return {
-                progress:{loading: false},
-               message:{error: action.error} 
+                ...state,
+                loading: false,
+                error: action.error
             }
         default: 
             return state;

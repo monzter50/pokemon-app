@@ -12,12 +12,11 @@ const fetchSelectPokemonSuccess = payload => ({type: FETCH_SELECT_POKEMON_SUCCES
 const fetchSelectPokemonError = error => ({type: FETCH_SELECT_POKEMON_ERROR,error})
 const fetchSelectPokemonPending = () => ({type: FETCH_SELECT_POKEMON_PENDING})
 
-
 export const fecthPokemons =()=>{
     
     return dispatch  =>{
         dispatch(fetchPokemonsPending())
-        fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10`)
+        fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=200`)
         .then(response => response.json())
        
         .then(response => {
@@ -36,17 +35,17 @@ export const fecthPokemons =()=>{
 export const fecthPokemon =(name)=>{
     
     return dispatch  =>{
-        dispatch(fetchSelectPokemonPending())
-        fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+        // dispatch(fetchSelectPokemonPending())
+       return fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then(response => response.json())
-       
         .then(response => {
-            const {name,types} = response
-            dispatch(fetchSelectPokemonSuccess({name,types}))
-            return {
-                name,
-                types
-            };
+            // const {name,types} = response
+            console.log("select pokemon",response)
+            dispatch(fetchSelectPokemonSuccess(response))
+            // return {
+            //     name,
+            //     types
+            // };
 
         })
         .catch(error => 

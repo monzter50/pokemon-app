@@ -1,22 +1,31 @@
 import {FETCH_SELECT_POKEMON_ERROR, FETCH_SELECT_POKEMON_SUCCESS, FETCH_SELECT_POKEMON_PENDING} from '../../redux/actions'
-
-export const selectPokemonReducer = (state={},action)=>{
+const initinialState = {
+    details:{},
+    loading: false,
+    error: false
+   
+};
+export const selectPokemonReducer = (state=initinialState,action)=>{
+    console.log("Details",state)
+    const newDetails = Object.assign({},state.details)
     switch(action.type){
         case FETCH_SELECT_POKEMON_PENDING: 
             return {
-                progress:{card_loading: true}
+                ...state,
+               loading: true
+
             }
         case FETCH_SELECT_POKEMON_SUCCESS:
-            console.log("pokemon state",state)
-            console.log("pokemon reducers action",action.payload)
+            newDetails[action.payload.name] =action.payload
             return {
-                progress:{card_loading: false},
-                stats: action.payload
+                ...state,
+                details:newDetails
             }
         case FETCH_SELECT_POKEMON_ERROR:
             return {
-                progress:{card_loading: false},
-                message:{card_error: action.error}
+                ...state,
+                loading: false,
+                error: action.error
             }
         default: 
             return state;

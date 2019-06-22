@@ -1,35 +1,39 @@
 import React,{Component} from 'react';
 import PokeCard from '../Card/PokemonCard';
 import {connect} from 'react-redux';
-import {fecthPokemons} from '../../redux/actions';
+import {fecthPokemons,fecthPokemon} from '../../redux/actions';
 // import {getDataPokemons} from '../redux/actions'
 class PokemonList extends Component{
-    constructor(props){
-        super(props)
-      
-    }
-   componentDidMount(){
-       this.props.fecthPokemons()
+  
+   componentDidMount(){      
+       const {pokemons,fecthPokemon} = this.props
+       console.log("didMount Pokemon",pokemons)
+    //     pokemons.map(pokemon =>{
+    //     fecthPokemon(pokemon.name)
+    //    }) 
    }
-   shouldComponentRender() {
-    const {loading} = this.props;
-    if(this.loading === false) return false;
-    // more tests
-    return true;
-}
+   
     render(){
-        const {pokemons,progress} = this.props 
+        const {pokemons,loading,fecthPokemon,pokemon} = this.props 
         if(!pokemons) return null
-        console.log("List Pokemon",pokemons)
-        console.log("List Loading",progress.loading)
+        
+        // pokemons.map(pokemon=>{
+        //     fecthPokemon(pokemon.name)
+        // })
+        // fecthPokemon(pokemons[0].name)
+                console.log("List Pokemon",pokemon.length)
+         
+       
+        console.log("List Loading",pokemons)
        
         return(
             <div className="container">
                
                 <div className="cards">
                 {
-                    !progress.loading ?(
+                    !loading ?(
                         pokemons.map((pokemon,index)=>(
+                            // <div>{pokemon.name}</div>
                             <PokeCard name={pokemon.name} id={index} key={index} />
                         ))
                     ) : (<div>Loading...</div>)
@@ -43,12 +47,14 @@ class PokemonList extends Component{
     }
 }
 const mapStateToProps =state=>({
-    progress:state.pokemonsReducers.progress,	
-    pokemons:state.pokemonsReducers.pokemons
+    progress:state.pokemonsReducers.loading,	
+    pokemons:state.pokemonsReducers.pokemons,
+        pokemon: state.selectPokemonReducer,
 })
 
 const mapDispatchToProps ={
-	fecthPokemons
+    fecthPokemons,
+    fecthPokemon
 }
 
 

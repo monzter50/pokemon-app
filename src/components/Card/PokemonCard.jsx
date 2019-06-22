@@ -9,15 +9,14 @@ class PokeCard extends Component{
                
             }
         }
+        this.props.fecthPokemon(this.props.name)
     }
     getStatsPokemon(){
         console.log("Get stats pokemon")
         
     }
     componentDidMount(){
-        console.log("component Did Mount")
-        const {name,fecthPokemon} = this.props
-        fecthPokemon(name)
+   
     }
     renderPokemon(){
         const {pokemon} = this.props
@@ -51,14 +50,15 @@ class PokeCard extends Component{
     render(){
      
       
-        const {pokemon} = this.props
+        const {details,name} = this.props
         const {stats} = this.state
-        if(!pokemon) return null
-        console.log("poke",pokemon.name)
-        const type = stats.types ? 
-            stats.types.map(type=>{
+        if(!details) return null
+        if(!details[name]) return null
+        console.log("poke",details)
+        const type = details[name].types ? 
+            details[name].types.map(type=>{
                 // console.log(type)
-            //    return type.type.name
+               return type.type.name
             }
               
             ):['default']
@@ -68,11 +68,12 @@ class PokeCard extends Component{
         return(
             <div className="card" >
                 <div className="card__header">
-                    {/* <div className={`avatar type--${type[0]}`}>
-                        <img src={stats.avatar} className="card__image" alt=""/>
-                    </div> */}
+                    <div className={`avatar type--${type[0]}`}>
+                        <img src={details[name].sprites.front_default} className="card__image" alt=""/>
+                    </div>
                     
-                    <h3>{pokemon.name}</h3>
+                    <h3>{details[name].name}</h3>
+                    <p>Weight : {details[name].weight}</p>
                 </div>
         </div>
         )
@@ -80,7 +81,7 @@ class PokeCard extends Component{
 }
 const mapStateToProps =(state)=>{
 	return {
-        pokemon: state.selectPokemonReducer.stats,
+        details: state.selectPokemonReducer.details,
     
 	};
 }
