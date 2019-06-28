@@ -1,3 +1,6 @@
+@import 'https://fonts.googleapis.com/css?family=Lato';
+
+
 *,
 *::before,
 *:after {
@@ -6,7 +9,8 @@
 
 body {
   margin : 0;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
+  min-height: 100vh;
 }
 h1,h2,h3,p{
   margin: 0;

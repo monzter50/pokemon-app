@@ -22,9 +22,10 @@
 @import "components/card";
 @import "components/badge";
 @import "components/avatar";
+@import "components/input";
 // Theme (colors and fonts)
 @import "theme/typography";
-
+@import "theme/button";
 // Utilities (hacks)
   // Todos los hacks que hayas necesitado para solucionar conflictos
   // o resolver situaciones extremas. Se espera poder mejorarlos luego.

@@ -1,0 +1,18 @@
+.button,
+[class^=button-] {
+    display: inline-block;
+    position: relative;
+    line-height: 2em;
+    padding: .2em 1em;
+    text-decoration: none;
+    // border-radius: .3em;
+    border: none;
+    margin: 0;
+    white-space: nowrap;
+    cursor: pointer;
+    flex:1;
+    font-weight: 900;
+    font-size: 1em;
+    color:var(--color);
+    background: var(--first-color);
+}

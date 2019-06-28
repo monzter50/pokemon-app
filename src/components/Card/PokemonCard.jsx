@@ -1,92 +1,77 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {fecthPokemon} from '../../redux/actions'
+import {fecthPokemon,fecthChain,fecthEvolution} from '../../redux/actions'
+import EvolutionList from '../Evolution-List/Evolution-List';
 class PokeCard extends Component{
     constructor(props){
         super(props)
-        this.state={
-            stats:{
-               
-            }
-        }
+
         this.props.fecthPokemon(this.props.name)
+        console.log("pase pokemon",this.props.name)
+        // console.log("pase chain",this.props.name)
+
     }
-    getStatsPokemon(){
-        console.log("Get stats pokemon")
-        
-    }
+
     componentDidMount(){
-   
-    }
-    renderPokemon(){
-        const {pokemon} = this.props
-        return (
-            <>
-            <div className="card__header">
-                    {/* <div className={`avatar type--${type[0]}`}>
-                        <img src={stats.avatar} className="card__image" alt=""/>
-                    </div> */}
-                    
-                    <h3>{pokemon.name}</h3>
-                </div>
-            <article className="card__container">
-                {/* {
-                    stats.types ? (
-                        stats.types.map(type=>(
-                           <span className={`badge--${type.type.name}`}>{type.type.name}</span>
-                          
-                        )) ):( <span>Loading</span>)
-                   
-                    
-                } */}
-                
-                <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae nostrum eos 
-                asperiores magnam ut fugit. Modi dicta mollitia blanditiis doloremque sint adipisci aut et, sed est voluptate necessitatibus laudantium?</p>
-            </article>
-            </>
-        )
+        this.props.fecthChain(this.props.name)
     }
 
     render(){
+        console.log(this.props.chain)
      
       
-        const {details,name} = this.props
-        const {stats} = this.state
-        if(!details) return null
+        const {details,name,id,chain} = this.props
         if(!details[name]) return null
-        console.log("poke",details)
         const type = details[name].types ? 
             details[name].types.map(type=>{
-                // console.log(type)
                return type.type.name
-            }
-              
+            }  
             ):['default']
-        // const type = stats.types[0] || 'default';
-        // console.log('badge',stats.avatar)
-        
+            
         return(
-            <div className="card" >
-                <div className="card__header">
-                    <div className={`avatar type--${type[0]}`}>
-                        <img src={details[name].sprites.front_default} className="card__image" alt=""/>
+            <div className="card" key={id}>
+                    <div className="card__header">
+                        <div className={`avatar type--${type[0]}`}>
+                            <img src={details[name].sprites.front_default} className="card__image" alt=""/>
+                        </div>
+
+                        <h3>{details[name].name}</h3>
+                        <p>Weight : {details[name].weight}</p>
+                    </div> 
+                    <article className="card__container">
+                    {
+                        details[name].types ? (
+                            details[name].types.map(type=>(
+                        <span className={`badge--${type.type.name}`}>{type.type.name}</span>
+
+                    )) ):( <span>Loading</span>)
+
+
+                    } 
+
+                     
+                    </article>
+                    <div className="card__details">
+                        <button href="" className="button--primary">View Details</button>
+                        <button href="" className="button--info">View Evolution</button>
                     </div>
-                    
-                    <h3>{details[name].name}</h3>
-                    <p>Weight : {details[name].weight}</p>
-                </div>
-        </div>
+                   
+            </div>
+            
         )
     }
 }
 const mapStateToProps =(state)=>{
 	return {
+        loading:state.selectPokemonReducer.loading,
         details: state.selectPokemonReducer.details,
+        chain: state.selectPokemonReducer.chain,
     
 	};
 }
 const mapDispatchToProps ={
-	fecthPokemon
+    fecthPokemon,
+    fecthChain,
 }
 export default connect(
     mapStateToProps, 

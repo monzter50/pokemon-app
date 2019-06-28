@@ -1,60 +1,53 @@
 import React,{Component} from 'react';
 import PokeCard from '../Card/PokemonCard';
 import {connect} from 'react-redux';
-import {fecthPokemons,fecthPokemon} from '../../redux/actions';
-// import {getDataPokemons} from '../redux/actions'
+import {fecthPokemons} from '../../redux/actions';
+import SearchList from '../SearchList/SearchList'
 class PokemonList extends Component{
   
-   componentDidMount(){      
-       const {pokemons,fecthPokemon} = this.props
-       console.log("didMount Pokemon",pokemons)
-    //     pokemons.map(pokemon =>{
-    //     fecthPokemon(pokemon.name)
-    //    }) 
-   }
-   
+
     render(){
-        const {pokemons,loading,fecthPokemon,pokemon} = this.props 
+        const {pokemons,loading} = this.props 
         if(!pokemons) return null
-        
-        // pokemons.map(pokemon=>{
-        //     fecthPokemon(pokemon.name)
-        // })
-        // fecthPokemon(pokemons[0].name)
-                console.log("List Pokemon",pokemon.length)
-         
-       
-        console.log("List Loading",pokemons)
-       
+ 
         return(
-            <div className="container">
-               
-                <div className="cards">
-                {
-                    !loading ?(
-                        pokemons.map((pokemon,index)=>(
-                            // <div>{pokemon.name}</div>
-                            <PokeCard name={pokemon.name} id={index} key={index} />
-                        ))
-                    ) : (<div>Loading...</div>)
-                   
-                    
-                }
+            <div>
+            
+                <div className="container">
+                <div className="container-search">
+                    <SearchList/>
+                    {/* <div className="group-search">
+                        <label htmlFor="" ><img src={search} height="20px" alt=""/></label>
+                        <input className="input" type="search" placeholder="Search" aria-label="Search"/>
+                      
+                    </div> */}
                 </div>
+                    <div className="cards" > 
+                    {
+                        !loading ?(
+                            pokemons.map((pokemon,index)=>(
+                                // <div>{pokemon.name}</div>
+                                <PokeCard name={pokemon.name} id={index} key={index} />
+                            ))
+                        ) : (<div>Loading...</div>)
+                        
+                        
+                    }
+                    </div>
                 
+                </div>
             </div>
+           
         )
     }
 }
 const mapStateToProps =state=>({
-    progress:state.pokemonsReducers.loading,	
+    loading:state.pokemonsReducers.loading,	
     pokemons:state.pokemonsReducers.pokemons,
-        pokemon: state.selectPokemonReducer,
 })
 
 const mapDispatchToProps ={
-    fecthPokemons,
-    fecthPokemon
+    fecthPokemons
 }
 
 

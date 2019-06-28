@@ -1,5 +1,20 @@
 .container{
     max-width: 1200px;
-    width: 85%;
+    width: 95%;
     margin: 0 auto;
+    &-search{
+        padding: 1em 0;
+    }
+}
+.search{
+    margin-right: 30px;
+}
+.group-search{
+    display: flex;
+    align-items: center;
+}
+.layout-grid{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    min-height: 100vh;
 }

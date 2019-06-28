@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import { store } from "./redux/store";
+import PublicRoutes  from "./routes";
+
 import './scss/styles.scss';
 import PokeApp from './container/PokeContainer';
 import * as serviceWorker from './serviceWorker';
 
+
 ReactDOM.render(
 <Provider store={store}>
-    <PokeApp />
+    <PublicRoutes />
 </Provider>
 , document.getElementById('root'));
 

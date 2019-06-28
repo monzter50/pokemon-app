@@ -1,13 +1,23 @@
-import {FETCH_SELECT_POKEMON_ERROR, FETCH_SELECT_POKEMON_SUCCESS, FETCH_SELECT_POKEMON_PENDING} from '../../redux/actions'
+import {
+    FETCH_SELECT_POKEMON_ERROR, 
+    FETCH_SELECT_POKEMON_SUCCESS, 
+    FETCH_SELECT_POKEMON_PENDING,
+    FECHT_CHAIN,
+    FECHT_EVOLUTION} from '../../redux/actions'
 const initinialState = {
-    details:{},
+    details:{
+    },
+    evolution:{},
+    chain:{},
     loading: false,
     error: false
    
 };
 export const selectPokemonReducer = (state=initinialState,action)=>{
-    console.log("Details",state)
     const newDetails = Object.assign({},state.details)
+    const newChain = Object.assign({},state.chain)
+    const newEvolution = Object.assign({},state.evolution)
+    console.log('STATE',state)
     switch(action.type){
         case FETCH_SELECT_POKEMON_PENDING: 
             return {
@@ -15,8 +25,27 @@ export const selectPokemonReducer = (state=initinialState,action)=>{
                loading: true
 
             }
+        case FECHT_CHAIN:
+                
+            newChain[action.payload.name] = action.payload.evolution_chain.url
+            // console.log('Chain chain', newChain)
+            return {
+                ...state,
+                loading: false,
+                chain:newChain
+            } 
+        case FECHT_EVOLUTION:
+          
+            newEvolution[action.payload.name] = action.payload
+            // console.log('Chain evoulion', action.payload)
+            return {
+                ...state,
+                loading: false,
+                evolution:newEvolution
+            }            
         case FETCH_SELECT_POKEMON_SUCCESS:
-            newDetails[action.payload.name] =action.payload
+            newDetails[action.payload.name] = action.payload
+            // console.log('My pokemon', newDetails)
             return {
                 ...state,
                 details:newDetails

@@ -7,7 +7,6 @@ const initinialState = {
 };
 
 export const pokemonsReducers = (state=initinialState,action)=>{
-    console.log(state)
     switch(action.type){
         case FETCH_POKEMONS_PENDING: 
             return {
@@ -15,8 +14,7 @@ export const pokemonsReducers = (state=initinialState,action)=>{
                loading: true
             }
         case FETCH_POKEMONS_SUCCESS:
-            console.log("state",state)
-            console.log("reducers action",action.payload)
+        
             return {
                 ...state,
                 loading: false,

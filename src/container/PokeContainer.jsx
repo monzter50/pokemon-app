@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import PokeList from '../components/List/PokemonList'
+import PokeList from '../components/List/PokemonList';
+import NavbarContainer from '../components/Navbar/NavbarContainer';
 import {connect} from 'react-redux';
 // import fecthPokemons from '../helpers/fecthPokemons';
 import {fecthPokemons} from '../redux/actions';
@@ -21,9 +22,10 @@ class PokeLayout extends Component{
     render(){   
      console.log("Container")
         return(
-            <>
+            <div className="layout-grid">
+                <NavbarContainer/>
                 <PokeList />
-            </>
+            </div>
         )
     }
 }
