@@ -17,7 +17,7 @@ class PokeCard extends Component{
     }
 
     render(){
-        console.log(this.props.chain)
+        // console.log(this.props.chain)
      
       
         const {details,name,id,chain} = this.props

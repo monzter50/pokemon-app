@@ -7,7 +7,7 @@ class PokemonList extends Component{
   
 
     render(){
-        const {pokemons,loading} = this.props 
+        const {pokemons,loading,onChange,text} = this.props 
         if(!pokemons) return null
  
         return(
@@ -15,7 +15,11 @@ class PokemonList extends Component{
             
                 <div className="container">
                 <div className="container-search">
-                    <SearchList/>
+                    <SearchList 
+                    onChange={onChange}
+                    pokemons ={pokemons}
+                    text={text}
+                    />
                     {/* <div className="group-search">
                         <label htmlFor="" ><img src={search} height="20px" alt=""/></label>
                         <input className="input" type="search" placeholder="Search" aria-label="Search"/>

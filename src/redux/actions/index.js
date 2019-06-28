@@ -12,6 +12,7 @@ export const FETCH_ERROR = 'FETCH_ERROR';
 export const FECHT_CHAIN = 'FECHT_CHAIN';
 export const FECHT_EVOLUTION = 'FECHT_EVOLUTION';
 
+export const SEARCH_POKEMON = 'SEARCH_POKEMON';
 const fecthChainSuccess = payload => ({type:FECHT_CHAIN,payload})
 const fetchPending = () => ({type: FETCH_PENDING})
 const fetchError = error => ({type: FETCH_ERROR,error})
@@ -54,7 +55,7 @@ export const fecthPokemon =(name)=>{
 }
 
 export const fecthChain =(name)=>{
-    console.log("fecth name",name)
+    // console.log("fecth name",name)
     return async dispatch  =>{
         try{
             dispatch(fetchSelectPokemonPending())
