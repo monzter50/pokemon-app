@@ -1,0 +1,26 @@
+.ui{
+    &-autocomplete{
+        position: relative;
+        &.key-on{
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        }
+        &-link{
+            padding: 1em;
+            cursor: pointer;
+            &:hover{
+                background: #f2f2f2;
+            }
+        }
+    }
+    &-list{
+        position: absolute;
+        transform: translateX(50%);
+        right: 50%;
+        background: white;
+        border-radius: 0.2em;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        z-index: var(--z-fixed);
+        // padding: 1em;
+        width: 100%;
+    }
+}

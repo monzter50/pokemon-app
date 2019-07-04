@@ -13,6 +13,8 @@ export const FECHT_CHAIN = 'FECHT_CHAIN';
 export const FECHT_EVOLUTION = 'FECHT_EVOLUTION';
 
 export const SEARCH_POKEMON = 'SEARCH_POKEMON';
+const searchPokemon = payload => ({type:SEARCH_POKEMON,payload})
+
 const fecthChainSuccess = payload => ({type:FECHT_CHAIN,payload})
 const fetchPending = () => ({type: FETCH_PENDING})
 const fetchError = error => ({type: FETCH_ERROR,error})
@@ -30,7 +32,7 @@ export const fecthPokemons =()=>{
     return async dispatch  =>{
         try{
             dispatch(fetchPokemonsPending())
-           const data = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150`).then(response => response.json())
+           const data = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=15`).then(response => response.json())
            dispatch(fetchPokemonsSuccess(data.results))
 
 
@@ -74,13 +76,18 @@ export const fecthEvolution =(url)=>{
     return async dispatch  =>{
         try{
             dispatch(fetchSelectPokemonPending())
-            console.log("fecth evolution",url)
            const data = await fetch(url).then(response => response.json())
-           console.log("select evolution",data)
            dispatch(fecthEvolutionSuccess(data))
         }catch(e){
             dispatch(fetchSelectPokemonError(e))
         }
       
+    }
+}
+export const findPokemon = (text) => {
+   
+    return dispatch => {
+        dispatch(searchPokemon(text))
+
     }
 }
