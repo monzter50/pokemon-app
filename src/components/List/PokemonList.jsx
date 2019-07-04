@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import PokeCard from '../Card/PokemonCard';
 import {connect} from 'react-redux';
 import {fecthPokemons} from '../../redux/actions';
-import SearchList from '../SearchList/SearchList'
+import AutoComplete from '../AutoComplete/AutoComplete'
 class PokemonList extends Component{
   
 
@@ -15,7 +15,7 @@ class PokemonList extends Component{
             
                 <div className="container">
                 <div className="">
-                    <SearchList 
+                    <AutoComplete 
                     pokemons ={pokemons}
                     />
                     <div>

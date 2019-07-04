@@ -16,15 +16,21 @@ class SearchList extends Component {
             isOpen : false
         }
         this.onTextChange = this.onTextChange.bind(this);
+        this.onTextSelect = this.onTextSelect.bind(this);
     }
-    onTextChange(event){
+    onTextSelect(text){
+        
+        this.setState({text})
+    }
+    onTextChange(text){
         const {pokemons} = this.props
-        const value = event.target.value
         let pokemonList = []
-        if(value.length > 0 ){
-            pokemonList = pokemons.filter(searchingFor(value))
+        this.setState({text})
+        if(text.length > 0 ){
+            pokemonList = pokemons.filter(searchingFor(text))
             this.setState({
-                pokemonList
+                pokemonList,
+
             })
         }else{
             let pokemonList =pokemons
@@ -44,7 +50,10 @@ class SearchList extends Component {
         return(
             pokemonList.map((pokemon,index)=>(
                 index < 10   ? 
-                <div className="ui-autocomplete-link">
+                <div className="ui-autocomplete-link" onClick={() => {
+                        this.onTextSelect(pokemon.name)
+                        this.setState({ isOpen: false });
+                    }}>
                     <span>{pokemon.name}</span>
                 </div>
                 :
@@ -70,21 +79,32 @@ class SearchList extends Component {
         return(
             <div className={"ui-autocomplete "+(isOpen?'key-on':'')}>
                 <input className={'input'} 
-                onChange={this.onTextChange}
-                onBlur={()=>{
-                    setTimeout(() => this.setState({ isOpen: false,pokemonList:pokemons }), 100);
-                    console.log("blur")
+                onChange={(event)=>{
+                    const newText = event.target.value
+                    this.onTextChange(newText)
+                    if (!isOpen && newText) {
+                        this.setState({ isOpen: true });
+                    } else if (isOpen && !newText) {
+                        this.setState({ isOpen: false });
+                    }
                 }}
+               
+                // onBlur={()=>{
+                //     setTimeout(() => this.setState({ isOpen: false,pokemonList:pokemons }), 100);
+                //     console.log("blur")
+                // }}
                 onFocus={() => {
-                   
+                    if (!text) {
                         this.setState({ isOpen: true,pokemonList:pokemons });
                         console.log("focus")
-                   
+                    }
                     console.log("text",text)
                 }}
                 type="text"
                 data-icon="search" 
-                placeholder="Search"/>   
+                placeholder="Search"
+                value={text}
+                />   
                 {isOpen &&
                     <div className="ui-list">
                             {
