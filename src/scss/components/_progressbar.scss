@@ -1,0 +1,23 @@
+.progress-bar {
+    margin-bottom: 1em;
+    height: 1em;
+    transform: skewX(45deg);
+    background-color: #ecf0f1;
+    position: relative;
+    max-width: 650px;
+    margin: 1em 0;
+    display: block;
+    .label-bar{
+        position: absolute;
+        bottom: 50%;
+        left: 20px;
+        // font-weight: bold;
+        text-transform: uppercase;
+        font-size: 18px;
+        transform: skewX(-45deg);
+    }
+    .bar{
+        display: block;
+        height: 100%;
+    }
+}

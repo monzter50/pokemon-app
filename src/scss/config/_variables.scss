@@ -22,6 +22,16 @@ $font-family: 'sans-serif';
     --psychic:#f81c91;
     --rock:#8d3d21;
     --steel:#5f756d;
+    --hp:#f44336;
+    --speed:#2196f3;
+    --sattack:#ff5722;
+    --sdefense:#9c27b0;
+    --defense:#3f51b5;
+    --attack:#e91e63;
     --z-normal:1;
     --z-fixed:1000;
 }
+// Media queries
+$phone: 576px;
+$tablet: 768px;
+$desktop: 1024px;

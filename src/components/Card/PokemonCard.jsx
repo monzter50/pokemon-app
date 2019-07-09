@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fecthPokemon,fecthChain,fecthEvolution} from '../../redux/actions'
-import EvolutionList from '../Evolution-List/Evolution-List';
+import ProgressBar from '../ProgressBar/ProgressBar';
 class PokeCard extends Component{
     constructor(props){
         super(props)
@@ -35,25 +35,35 @@ class PokeCard extends Component{
                             <img src={details[name].sprites.front_default} className="card__image" alt=""/>
                         </div>
 
-                        <h3>{details[name].name}</h3>
-                        <p>Weight : {details[name].weight}</p>
+                      
                     </div> 
                     <article className="card__container">
-                    {
-                        details[name].types ? (
-                            details[name].types.map(type=>(
-                        <span className={`badge--${type.type.name}`}>{type.type.name}</span>
+                        <div className="card__description">
+                            <h3>{details[name].name}</h3>
+                            <div>
+                                {
+                                    details[name].types ? (
+                                    details[name].types.map(type=>(
+                                    <span className={`badge--${type.type.name}`}>{type.type.name}</span>
 
-                    )) ):( <span>Loading</span>)
-
-
-                    } 
-
-                     
+                                    )) ):( <span>Loading</span>)
+                                } 
+                            </div>
+                           
+                        </div>
+                        <div className="card__stats">
+                            {
+                                details[name].stats.map(stat=>(
+                                        <ProgressBar text={stat.stat.name} percentage={stat.base_stat}/>
+                                    ))   
+                            }
+                        </div>
+                       
+                        
+                        <span>{}</span>
                     </article>
                     <div className="card__details">
                         <button href="" className="button--primary">View Details</button>
-                        <button href="" className="button--info">View Evolution</button>
                     </div>
                    
             </div>

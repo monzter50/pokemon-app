@@ -3,9 +3,10 @@
     display: inline-block;
     position: relative;
     line-height: 2em;
-    padding: .2em 1em;
+    padding: .4em 1em;
     text-decoration: none;
-    // border-radius: .3em;
+    border-radius: .3em;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
     border: none;
     margin: 0;
     white-space: nowrap;

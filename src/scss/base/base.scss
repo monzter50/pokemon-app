@@ -5,14 +5,32 @@
 *::before,
 *:after {
   box-sizing: border-box;
+  transition: all .5s;
+
 }
 
 body {
   margin : 0;
   font-family: 'Lato', sans-serif;
   min-height: 100vh;
+  margin : 0;
+	display: flex;
+	flex-direction: column;
+	max-width: 1920px;
+	width: 100%;
+	padding: 0;
+  position: relative;
+  
+}
+h2,h2,h3{
+  text-transform: uppercase;
+  color: rgba(0,0,0, .87)
+}
+h4,h5{
+  color: rgba(0,0,0, .60)
 }
 h1,h2,h3,p{
   margin: 0;
   padding: 0;
+
 }

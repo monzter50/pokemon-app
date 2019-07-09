@@ -45,7 +45,7 @@ export const selectPokemonReducer = (state=initinialState,action)=>{
             }            
         case FETCH_SELECT_POKEMON_SUCCESS:
             newDetails[action.payload.name] = action.payload
-            // console.log('My pokemon', newDetails)
+            console.log('My pokemon', newDetails)
             return {
                 ...state,
                 details:newDetails

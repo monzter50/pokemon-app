@@ -6,23 +6,27 @@ import {connect} from 'react-redux';
 import {fecthPokemons} from '../redux/actions';
 import { bindActionCreators } from 'redux';
 class PokeLayout extends Component{
-    constructor(props){
-        super(props)
-      
-    }
+
   
     componentDidMount(){    
         this.props.fecthPokemons()
     }
     
     render(){   
-     console.log("Container")
         return(
-            <div className="layout-grid">
-                <NavbarContainer/>
+            <>
+                
                 <PokeList
                 />
-            </div>
+                <footer className="layout-footer">
+                    <article className="footer-description container">
+                        <p>Monster Codes</p>
+                        <div>
+                            <a href="https://github.com/monzter50">My github</a>
+                        </div>
+                    </article>
+                </footer>
+            </>
         )
     }
 }
