@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fecthPokemon,fecthChain,fecthEvolution} from '../../redux/actions'
 import ProgressBar from '../ProgressBar/ProgressBar';
+import { NavLink  } from "react-router-dom";
 class PokeCard extends Component{
     constructor(props){
         super(props)
@@ -63,7 +64,7 @@ class PokeCard extends Component{
                         <span>{}</span>
                     </article>
                     <div className="card__details">
-                        <button href="" className="button--primary">View Details</button>
+                        <NavLink  to={{ pathname: `/details/${id}`}} className="button--primary">View Details</NavLink >
                     </div>
                    
             </div>

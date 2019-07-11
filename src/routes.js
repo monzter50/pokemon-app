@@ -1,16 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Details from './container/Details'
 import PokeApp from './container/PokeContainer'
 
 
-const PublicRoutes = () => {
+const PublicRoutes = ({history}) => {
   return (
-    <Router >
-      <div>
+    <Router  history={history}>
         <Route
-          exact
-          path={"/details"}
+         exact strict 
+          path={"/details/:id"}
           component={Details}
         />
         <Route
@@ -20,7 +19,6 @@ const PublicRoutes = () => {
         />
  
      
-      </div>
     </Router>
   )
 };
