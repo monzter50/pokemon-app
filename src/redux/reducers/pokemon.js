@@ -27,25 +27,21 @@ export const selectPokemonReducer = (state=initinialState,action)=>{
             }
         case FECHT_CHAIN:
                 
-            newChain[action.payload.name] = action.payload.evolution_chain.url
-            // console.log('Chain chain', newChain)
+            newChain[action.payload.name] = action.payload
+            console.log('Chain chain', newChain)
             return {
                 ...state,
                 loading: false,
                 chain:newChain
             } 
         case FECHT_EVOLUTION:
-          
-            newEvolution[action.payload.name] = action.payload
-            // console.log('Chain evoulion', action.payload)
             return {
                 ...state,
                 loading: false,
-                evolution:newEvolution
+                evolution: action.payload
             }            
         case FETCH_SELECT_POKEMON_SUCCESS:
             newDetails[action.payload.name] = action.payload
-            console.log('My pokemon', newDetails)
             return {
                 ...state,
                 details:newDetails

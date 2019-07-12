@@ -72,11 +72,11 @@ export const fecthChain =(name)=>{
     }
 }
 
-export const fecthEvolution =(url)=>{
+export const fecthEvolution =(id)=>{
     return async dispatch  =>{
         try{
             dispatch(fetchSelectPokemonPending())
-           const data = await fetch(url).then(response => response.json())
+           const data = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}/`).then(response => response.json())
            dispatch(fecthEvolutionSuccess(data))
         }catch(e){
             dispatch(fetchSelectPokemonError(e))

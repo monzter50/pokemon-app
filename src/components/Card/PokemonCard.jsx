@@ -14,7 +14,6 @@ class PokeCard extends Component{
     }
 
     componentDidMount(){
-        this.props.fecthChain(this.props.name)
     }
 
     render(){
@@ -64,7 +63,7 @@ class PokeCard extends Component{
                         <span>{}</span>
                     </article>
                     <div className="card__details">
-                        <NavLink  to={{ pathname: `/details/${id}`}} className="button--primary">View Details</NavLink >
+                        <NavLink  to={{ pathname: `/details/${name}`,state:{id}}} className="button--primary">View Details</NavLink >
                     </div>
                    
             </div>
