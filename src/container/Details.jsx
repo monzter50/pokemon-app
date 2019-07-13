@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fecthChain,fecthPokemon,fecthEvolution} from '../redux/actions';
+import {getEvolutions} from '../helpers/getEvolutions'
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 class Details extends Component{
     constructor(props){
@@ -14,33 +15,24 @@ class Details extends Component{
         console.log(match.params.id)
         fecthChain(match.params.id)
         fecthPokemon(match.params.id)
-        fecthEvolution(location.state.id)
+        // fecthEvolution(1)
         console.log("Location",location)
     }
     render(){
-        const {evolution,details,match} = this.props 
+        const {evolution,details,match,chain,fecthEvolution} = this.props 
         const {url} = this.state
         const name = match.params.id
         if(!details[name]) return null
-        if(!evolution.chain) return null
-        console.log(evolution)
-            let evoChain = [];
-            let evoData = evolution.chain;
+        // if(!evolution.chain) return null
+        if(!chain[name]) return null
+        const evolutionChain = chain[name].evolution_chain.url.split("/")
+        console.log(evolutionChain[6])
+        // fecthEvolution(1)
+           
 
-            do {
-            var evoDetails = evoData['evolution_details'][0];
-            const id = evoData.species.url.split("/")   
-            evoChain.push({
-                "species_name": evoData.species.name,
-                "min_level": !evoDetails ? 1 : evoDetails.min_level,
-                "trigger_name": !evoDetails ? null : evoDetails.trigger.name,
-                "item": !evoDetails ? null : evoDetails.item,
-                "url":`${url}${id[6]}.png?raw=true`
-            });
-
-            evoData = evoData['evolves_to'][0];
-            } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
-            console.log(evoChain)
+           
+            // let evoChain =   getEvolutions(evolution.chain)
+            // console.log( "Get Evolution",getEvolutions(evolution.chain))
         return(
             <div>
                  <div className="card__header">
@@ -59,15 +51,15 @@ class Details extends Component{
                     <div>
                         <h2>Evolution Chain</h2>
                         <div>
-                            {
+                            {/* {
                                 evoChain.map(evoDetails =>(
                                     <div className={`avatar`}>
-                                        <img src={evoDetails.url} className="card__image" alt=""/>
+                                        <img src={`${url}${evoDetails.id}.png?raw=true`} className="card__image" alt=""/>
                                     </div>
                                 ))
 
                                 
-                            }
+                            } */}
                             
                           
                         </div>

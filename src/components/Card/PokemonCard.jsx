@@ -7,8 +7,11 @@ class PokeCard extends Component{
     constructor(props){
         super(props)
 
-        this.props.fecthPokemon(this.props.name)
-        console.log("pase pokemon",this.props.name)
+        const {fecthPokemon,fecthChain,name} = this.props
+        fecthPokemon(name)
+        fecthChain(name)
+
+        console.log("pase pokemon",name)
         // console.log("pase chain",this.props.name)
 
     }
@@ -22,12 +25,13 @@ class PokeCard extends Component{
       
         const {details,name,id,chain} = this.props
         if(!details[name]) return null
+        if(!chain[name]) return null
         const type = details[name].types ? 
             details[name].types.map(type=>{
                return type.type.name
             }  
             ):['default']
-            
+            console.log(chain[name])
         return(
             <div className="card" key={id}>
                     <div className="card__header">
