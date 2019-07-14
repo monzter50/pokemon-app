@@ -1,33 +1,37 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fecthEvolution} from '../../redux/actions';
-// import EvolutionList from '../Evolution-List/EvolutionList';
+import {getEvolutions} from '../../helpers/getEvolutions'
 class EvolutionList extends Component{
     constructor(props){
         super(props)
-        const {fecthEvolution,name,chain} = this.props
-        
-        // fecthEvolution(chain[name])
-      
+        this.state ={
+            id_Chain:null
+        }
     }
      componentDidMount(){
-        const {name,chain} = this.props
-        // console.log("render chain2",this.props.chain)
-        // console.log("component chain",chain[name])
-        // console.log("component",name)
+     
+
      }
- 
+     componentDidUpdate(){
+        const {urlChain,fecthEvolution}= this.props
+    
+        
+        //  fecthEvolution(urlChain.url.split("/")[urlChain.url.split('/').length - 2])
+     }
     render(){
-        // console.log("render chain",this.props.chain[this.props.name])
        
+        const {evolution,details,match} = this.props 
+    
+            let evoChain =   getEvolutions(evolution.chain)
         return(
-            <div className="avatar-list">
-               
-               <div className={`avatar`}>
-                        {/* <span>{this.props.chain}</span> */}
-                    </div>
-            
-                
+            <div>
+                {
+                    evoChain.map(evoDetails =>(
+                    
+                        <img src={`https://img.pokemondb.net/artwork/${evoDetails.species_name}.jpg`} alt=""/>
+                    ))
+                } 
             </div>
         )
     }
@@ -36,14 +40,9 @@ class EvolutionList extends Component{
 const mapStateToProps =(state)=>{
 	return {
         evolution: state.selectPokemonReducer.evolution,
-        chain: state.selectPokemonReducer.chain,
-    
 	};
 }
-const mapDispatchToProps ={
-    fecthEvolution
-}
+
 export default connect(
-    mapStateToProps, 
-    mapDispatchToProps
+    mapStateToProps
     )(EvolutionList);

@@ -1,15 +1,15 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {fecthPokemon,fecthChain,fecthEvolution} from '../../redux/actions'
+import {fecthPokemon,fecthSpecies,fecthEvolution} from '../../redux/actions'
 import ProgressBar from '../ProgressBar/ProgressBar';
 import { NavLink  } from "react-router-dom";
 class PokeCard extends Component{
     constructor(props){
         super(props)
 
-        const {fecthPokemon,fecthChain,name} = this.props
+        const {fecthPokemon,fecthSpecies,name} = this.props
         fecthPokemon(name)
-        fecthChain(name)
+        fecthSpecies(name)
 
         console.log("pase pokemon",name)
         // console.log("pase chain",this.props.name)
@@ -31,7 +31,8 @@ class PokeCard extends Component{
                return type.type.name
             }  
             ):['default']
-            console.log(chain[name])
+            const id_Chain = chain[name].evolution_chain.url.split("/")[chain[name].evolution_chain.url.split('/').length - 2]
+            console.log("id",id_Chain)
         return(
             <div className="card" key={id}>
                     <div className="card__header">
@@ -67,7 +68,7 @@ class PokeCard extends Component{
                         <span>{}</span>
                     </article>
                     <div className="card__details">
-                        <NavLink  to={{ pathname: `/details/${name}`,state:{id}}} className="button--primary">View Details</NavLink >
+                        <NavLink  to={{ pathname: `/details/`,state:{id_Chain,name}}} className="button--primary">View Details</NavLink >
                     </div>
                    
             </div>
@@ -85,7 +86,7 @@ const mapStateToProps =(state)=>{
 }
 const mapDispatchToProps ={
     fecthPokemon,
-    fecthChain,
+    fecthSpecies,
 }
 export default connect(
     mapStateToProps, 

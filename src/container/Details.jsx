@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {fecthChain,fecthPokemon,fecthEvolution} from '../redux/actions';
+import {fecthSpecies,fecthPokemon,fecthEvolution} from '../redux/actions';
 import {getEvolutions} from '../helpers/getEvolutions'
+import {trainer} from '../components/SVG/trainer'
 import ProgressBar from '../components/ProgressBar/ProgressBar';
 class Details extends Component{
     constructor(props){
@@ -11,33 +12,25 @@ class Details extends Component{
         }
     }
     componentDidMount(){
-        const {location,match,fecthChain,fecthPokemon,fecthEvolution}= this.props
-        console.log(match.params.id)
-        fecthChain(match.params.id)
-        fecthPokemon(match.params.id)
-        // fecthEvolution(1)
-        console.log("Location",location)
+        const {location,match,fecthPokemon,fecthEvolution}= this.props
+        console.log(location.state.name)
+        fecthPokemon(location.state.name)
+        fecthEvolution(location.state.id_Chain)
+        console.log("Location",location.state)
     }
     render(){
-        const {evolution,details,match,chain,fecthEvolution} = this.props 
+        const {evolution,details,location} = this.props 
         const {url} = this.state
-        const name = match.params.id
+        const name = location.state.name
         if(!details[name]) return null
-        // if(!evolution.chain) return null
-        if(!chain[name]) return null
-        const evolutionChain = chain[name].evolution_chain.url.split("/")
-        console.log(evolutionChain[6])
-        // fecthEvolution(1)
-           
-
-           
-            // let evoChain =   getEvolutions(evolution.chain)
-            // console.log( "Get Evolution",getEvolutions(evolution.chain))
+            let evoChain =   getEvolutions(evolution.chain)
+            console.log( "Get Evolution",details[name])
         return(
+            // https://img.pokemondb.net/artwork/rattata.jpg
             <div>
                  <div className="card__header">
                         <div className={`avatar`}>
-                            <img src={details[match.params.id].sprites.front_default} className="card__image" alt=""/>
+                            <img src={details[location.state.name].sprites.front_default} className="card__image" alt=""/>
                         </div>
 
                         <div className="card__stats">
@@ -51,19 +44,23 @@ class Details extends Component{
                     <div>
                         <h2>Evolution Chain</h2>
                         <div>
-                            {/* {
+                           {
                                 evoChain.map(evoDetails =>(
-                                    <div className={`avatar`}>
-                                        <img src={`${url}${evoDetails.id}.png?raw=true`} className="card__image" alt=""/>
-                                    </div>
+                                    <img src={`https://img.pokemondb.net/artwork/${evoDetails.species_name}.jpg`} alt=""/>
                                 ))
 
                                 
-                            } */}
-                            
-                          
+                            } 
                         </div>
-                       
+                    </div>
+                    <div>
+                        <h2>Measurements</h2>
+                        <div>
+                            <div>
+                                <img src={`${url}${details[name].id}.png?raw=true`} alt=""/>
+                                <img src={trainer} alt=""/>
+                            </div>
+                        </div>
                     </div>
             </div>
         )
@@ -78,7 +75,7 @@ const mapStateToProps =(state)=>{
 	};
 }
 const mapDispatchToProps ={
-    fecthChain,
+    fecthSpecies,
     fecthPokemon,
     fecthEvolution
 }

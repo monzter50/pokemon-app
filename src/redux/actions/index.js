@@ -56,13 +56,15 @@ export const fecthPokemon =(name)=>{
     }
 }
 
-export const fecthChain =(name)=>{
+export const fecthSpecies =(name)=>{
     // console.log("fecth name",name)
     return async dispatch  =>{
         try{
             dispatch(fetchSelectPokemonPending())
            const data = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}/`).then(response => response.json())
-           dispatch(fecthChainSuccess(data))
+           const {evolution_chain,habitat} = data
+            console.log(data)
+           dispatch(fecthChainSuccess({name,evolution_chain,habitat}))
         }catch (e) {
             dispatch(fetchSelectPokemonError(e))
 

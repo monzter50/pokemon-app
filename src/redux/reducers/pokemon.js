@@ -17,16 +17,13 @@ export const selectPokemonReducer = (state=initinialState,action)=>{
     const newDetails = Object.assign({},state.details)
     const newChain = Object.assign({},state.chain)
     const newEvolution = Object.assign({},state.evolution)
-    // console.log('STATE',state)
     switch(action.type){
         case FETCH_SELECT_POKEMON_PENDING: 
             return {
                 ...state,
                loading: true
-
             }
-        case FECHT_CHAIN:
-                
+        case FECHT_CHAIN:                
             newChain[action.payload.name] = action.payload
             console.log('Chain chain', newChain)
             return {
