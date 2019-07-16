@@ -9,7 +9,7 @@ class EvolutionList extends Component{
         let evoChain =   getEvolutions(evolution.chain)
         return(
             <div className="evolution-list">
-                
+
                 {
                     evoChain.map((evoDetails,index) =>(
                         <div className="evolution-items">
@@ -22,6 +22,7 @@ class EvolutionList extends Component{
                                     species_name={evoDetails.species_name}
                                     prevSpecies_name={evoChain[index-1].species_name}
                                     prevID={evoChain[index-1].id}
+                                    min_evo={evoDetails.min_level}
                                 />
                                     :null
                             }

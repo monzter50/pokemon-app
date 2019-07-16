@@ -25,7 +25,6 @@ export const selectPokemonReducer = (state=initinialState,action)=>{
             }
         case FECHT_CHAIN:                
             newChain[action.payload.name] = action.payload
-            console.log('Chain chain', newChain)
             return {
                 ...state,
                 loading: false,

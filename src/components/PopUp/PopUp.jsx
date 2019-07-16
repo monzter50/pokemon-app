@@ -1,5 +1,5 @@
 import React from 'react';
-const PopUp = ({id,species_name,prevID,prevSpecies_name})=>{
+const PopUp = ({id,species_name,prevID,prevSpecies_name,min_evo})=>{
     return(
         <article className="popup">
                 <img src={`https://img.pokemondb.net/artwork/${species_name}.jpg`} className="pokemon" alt=""/>
@@ -14,7 +14,7 @@ const PopUp = ({id,species_name,prevID,prevSpecies_name})=>{
                     <article className="table-evolution">
                         <p className="items">Level up</p>
                         <p>Min level</p>
-                        <p>16</p>
+                        <p>{min_evo}</p>
                     </article>
                 </div>
             </div>
