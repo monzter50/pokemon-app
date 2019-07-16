@@ -5,6 +5,22 @@
     background: #f2f2f2;
     min-height: 100px;
     min-width: 100px;
+    &-primary{
+        position: relative;
+        display: inline-block;
+        border-radius: 60%;
+        background: #ffffff;
+        padding: 1em;
+        max-height: 200px;
+        max-width: 200px;
+        overflow: hidden;
+        // box-shadow: 0 4px 6px rgba(0,0,0, .7);
+        img{
+            object-fit: cover;
+            width: 100%;
+            object-position: center;
+        }
+    }
     &::after{
         content: '';
         position: absolute;
