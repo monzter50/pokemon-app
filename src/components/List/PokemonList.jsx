@@ -50,7 +50,6 @@ class PokemonList extends Component{
             })
         }
        
-        console.log(text,pokemons)
    }
    renderPokemons(){
        const {pokemonList}= this.state
@@ -67,10 +66,13 @@ class PokemonList extends Component{
         );
     }
     return(
+        !loading ?(
         pokemons.map((pokemon,index)=>(
             <PokeCard name={pokemon.name} id={index} key={index} />
         ))
+        ) : (<div>Loading...</div>)
     )
+
 
    }
     render(){

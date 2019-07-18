@@ -32,7 +32,7 @@ export const fecthPokemons =()=>{
     return async dispatch  =>{
         try{
             dispatch(fetchPokemonsPending())
-           const data = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=50`).then(response => response.json())
+           const data = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150`).then(response => response.json())
            dispatch(fetchPokemonsSuccess(data.results))
 
 

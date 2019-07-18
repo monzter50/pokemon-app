@@ -10,19 +10,13 @@ class PokeCard extends Component{
         const {fecthPokemon,fecthSpecies,name} = this.props
         fecthPokemon(name)
         fecthSpecies(name)
-
-        console.log("pase pokemon",name)
-        // console.log("pase chain",this.props.name)
-
     }
 
     componentDidMount(){
     }
 
     render(){
-        // console.log(this.props.chain)
      
-      
         const {details,name,id,chain} = this.props
         if(!details[name]) return null
         if(!chain[name]) return null
@@ -32,7 +26,6 @@ class PokeCard extends Component{
             }  
             ):['default']
             const id_Chain = chain[name].evolution_chain.url.split("/")[chain[name].evolution_chain.url.split('/').length - 2]
-            console.log("id",id_Chain)
         return(
             <div className="card" key={id}>
                     <div className="card__header">
