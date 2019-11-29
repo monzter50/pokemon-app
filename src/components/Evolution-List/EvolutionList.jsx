@@ -1,15 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Component } from "react";
 import getEvolutions from "../../helpers/getEvolutions";
 import PopUp from "../PopUp/PopUp";
-
-class EvolutionList extends React.Component {
-  static propTypes = {
-    evolution: PropTypes.array
-  };
+export class EvolutionList extends Component {
   render() {
-    const evoChain = getEvolutions(this.props.evolution.chain);
+    const { evolution } = this.props;
+    let evoChain = getEvolutions(evolution.chain);
     return (
       <div className="evolution-list">
         {evoChain.map((evoDetails, index) => (
@@ -34,9 +29,3 @@ class EvolutionList extends React.Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return { evolution: state.selectPokemonReducer.evolution };
-}
-
-export default connect(mapStateToProps)(EvolutionList);

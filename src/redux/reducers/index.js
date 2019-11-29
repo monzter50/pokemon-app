@@ -1,11 +1,12 @@
-import {combineReducers} from 'redux';
-import {selectPokemonReducer} from "./pokemon";
-import {pokemonsReducers} from "./pokemons";
-import {findPokemon} from './findPokemon';
+import { combineReducers } from "redux";
+import { selectPokemonReducer } from "./pokemon";
+import { pokemonsReducers } from "./pokemons";
+import { findPokemon } from "./findPokemon";
+
 const rootReducer = combineReducers({
-   selectPokemonReducer,
-   pokemonsReducers,
-   findPokemon
-   // person
+	selectPokemonReducer,
+	pokemonsReducers,
+	findPokemon,
+	// person
 });
 export default rootReducer;
