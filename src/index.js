@@ -11,10 +11,10 @@ import { createBrowserHistory } from "history";
 const history = createBrowserHistory();
 
 ReactDOM.render(
-	<Provider store={store}>
-		<PublicRoutes history={history} />
+  <Provider store={store}>
+    <PublicRoutes history={history} />{" "}
   </Provider>,
-	document.getElementById("root"),
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -1,20 +1,25 @@
-.percentage{
-    &-hp{
+.percentage {
+    &-hp {
         background: var(--hp);
     }
-    &-speed{
+
+    &-speed {
         background: var(--speed);
     }
-    &-special-attack{
+
+    &-special-attack {
         background: var(--sattack);
     }
-    &-special-defense{
+
+    &-special-defense {
         background: var(--sdefense);
     }
-    &-defense{
+
+    &-defense {
         background: var(--defense);
     }
-    &-attack{
+
+    &-attack {
         background: var(--attack);
     }
 }

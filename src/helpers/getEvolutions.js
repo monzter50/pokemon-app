@@ -13,7 +13,9 @@ const getEvolutions = pokemon => {
         id: `${id[6]}`
       });
 
+      // eslint-disable-next-line prefer-destructuring
       evoData = evoData.evolves_to[0];
+      // eslint-disable-next-line no-prototype-builtins
     } while (!!evoData && evoData.hasOwnProperty("evolves_to"));
   }
 
