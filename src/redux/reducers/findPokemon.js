@@ -1,15 +1,12 @@
-import { SEARCH_POKEMON } from "../actions";
-
 const initinialState = {
-	pokemons: [],
-	loading: false,
-	error: false,
+  pokemons: [],
+  loading: false,
+  error: false
 };
-export const findPokemon = (state = initinialState, action) => {
-	switch (action.type) {
-	case SEARCH_POKEMON:
-		break;
-	default:
-		return state;
-	}
+const findPokemon = (state = initinialState, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
 };
+export default findPokemon;

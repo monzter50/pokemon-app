@@ -1,16 +1,16 @@
-.input{
-    border: 0;
-    padding:.8em 1.3em;
-    width: 100%;
-   
+.input {
+  border: 0;
+  padding: 0.8em 1.3em;
+  width: 100%;
 }
-.input[data-icon]{
-	background-position: 5px;
-    padding-left: calc(1em * 2);
-    background-size: 1.3em;
-	background-repeat: no-repeat;
-}
-[data-icon="search"]{
-    background-image:url("../components/SVG/search.svg")
-  }
 
+.input[data-icon] {
+  background-position: 5px;
+  padding-left: calc(1em * 2);
+  background-size: 1.3em;
+  background-repeat: no-repeat;
+}
+
+[data-icon="search"] {
+  background-image: url("../../components/SVG/search.svg");
+}
