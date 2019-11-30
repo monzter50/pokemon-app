@@ -1,18 +1,18 @@
 /* eslint-disable no-shadow */
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { fecthSpecies, fecthPokemon, fecthEvolution } from "../redux/actions";
-import trainer from "../components/SVG/trainer";
-import Percentage from "../components/Percentage/Percentage";
-import EvolutionList from "../components/Evolution-List/EvolutionList";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { fecthSpecies, fecthPokemon, fecthEvolution } from '../redux/actions';
+import trainer from '../components/SVG/trainer';
+import Percentage from '../components/Percentage/Percentage';
+import EvolutionList from '../components/Evolution-List/EvolutionList';
 
 class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/"
+      url: 'https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/',
     };
   }
 
@@ -28,13 +28,13 @@ class Details extends Component {
     const { name } = location.state;
     if (!details[name]) return null;
     const type = details[name].types
-      ? details[name].types.map(tp => tp.type.name)
-      : ["default"];
+      ? details[name].types.map((tp) => tp.type.name)
+      : ['default'];
     return (
       <>
         <div className={`banner type--${type[0]}`}>
           <NavLink
-            to={{ pathname: "/" }}
+            to={{ pathname: '/' }}
             className="banner-self-left text-white"
           >
             Back
@@ -50,7 +50,7 @@ class Details extends Component {
         <div className="container">
           <div>
             <div className="card__stats">
-              {details[name].stats.map(stat => (
+              {details[name].stats.map((stat) => (
                 <Percentage text={stat.stat.name} percentage={stat.base_stat} />
               ))}
             </div>
@@ -80,7 +80,10 @@ class Details extends Component {
                 </div>
                 <div>
                   <h3>Height</h3>
-                  <h4 className="measure">{details[name].height / 10}m</h4>
+                  <h4 className="measure">
+                    {details[name].height / 10}
+m
+                  </h4>
                   <small>
                     Note: Image depiction might be inaccurate (trainer has base
                     height of 1.5m)
@@ -99,15 +102,15 @@ Details.propTypes = {
   details: PropTypes.array.isRequired,
   fecthPokemon: PropTypes.func.isRequired,
   fecthEvolution: PropTypes.func.isRequired,
-  location: PropTypes.string.isRequired
+  location: PropTypes.string.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   chain: state.selectPokemonReducer.chain,
-  details: state.selectPokemonReducer.details
+  details: state.selectPokemonReducer.details,
 });
 const mapDispatchToProps = {
   fecthSpecies,
   fecthPokemon,
-  fecthEvolution
+  fecthEvolution,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Details);

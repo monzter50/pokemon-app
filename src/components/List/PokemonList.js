@@ -1,18 +1,18 @@
 /* eslint-disable react/sort-comp */
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import PokeCard from "../Card/PokemonCard";
-import { fecthPokemons } from "../../redux/actions";
-import AutoComplete from "../AutoComplete/AutoComplete";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PokeCard from '../Card/PokemonCard';
+import { fecthPokemons } from '../../redux/actions';
+import AutoComplete from '../AutoComplete/AutoComplete';
 
 class PokemonList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       pokemonList: [],
-      text: "",
-      active: false
+      text: '',
+      active: false,
     };
     this.onTextChange = this.onTextChange.bind(this);
     this.onTextSelect = this.onTextSelect.bind(this);
@@ -26,12 +26,12 @@ class PokemonList extends Component {
     if (text.length > 0) {
       pokemonList = pokemons.filter(text);
       this.setState({
-        pokemonList
+        pokemonList,
       });
     } else {
       pokemonList = pokemons;
       this.setState({
-        pokemonList
+        pokemonList,
       });
     }
   }
@@ -43,12 +43,12 @@ class PokemonList extends Component {
     if (text.length > 0) {
       pokemonList = pokemons.filter(text);
       this.setState({
-        pokemonList
+        pokemonList,
       });
     } else {
       pokemonList = pokemons;
       this.setState({
-        pokemonList
+        pokemonList,
       });
     }
   }
@@ -77,7 +77,7 @@ class PokemonList extends Component {
   }
 
   handleClick() {
-    this.setState(prevState => ({ active: !prevState.active }));
+    this.setState((prevState) => ({ active: !prevState.active }));
   }
 
   render() {
@@ -97,7 +97,7 @@ class PokemonList extends Component {
             />
             <div className="list-info">
               <div
-                className={`list-bars ${!active ? "active" : ""}`}
+                className={`list-bars ${!active ? 'active' : ''}`}
                 onClick={this.handleClick}
                 onKeyUp={this.handleClick}
                 role="button"
@@ -109,7 +109,7 @@ class PokemonList extends Component {
                 <span />
               </div>
               <div
-                className={`th-bars${active ? " active" : ""}`}
+                className={`th-bars${active ? ' active' : ''}`}
                 onClick={this.handleClick}
                 onKeyDown={this.handleClick}
                 role="button"
@@ -122,7 +122,7 @@ class PokemonList extends Component {
               </div>
             </div>
           </div>
-          <div className={active ? "cards" : "list"}>
+          <div className={active ? 'cards' : 'list'}>
             {this.renderPokemons()}
           </div>
         </div>
@@ -133,15 +133,15 @@ class PokemonList extends Component {
 PokemonList.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   pokemons: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loading: state.pokemonsReducers.loading,
-  pokemons: state.pokemonsReducers.pokemons
+  pokemons: state.pokemonsReducers.pokemons,
 });
 
 const mapDispatchToProps = {
-  fecthPokemons
+  fecthPokemons,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);

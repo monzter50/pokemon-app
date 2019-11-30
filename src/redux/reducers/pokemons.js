@@ -1,13 +1,13 @@
 import {
   FETCH_POKEMONS_PENDING,
   FETCH_POKEMONS_SUCCESS,
-  FETCH_POKEMONS_ERROR
-} from "../actions";
+  FETCH_POKEMONS_ERROR,
+} from '../actions';
 
 const initinialState = {
   pokemons: [],
   loading: false,
-  error: false
+  error: false,
 };
 
 const pokemonsReducers = (state = initinialState, action) => {
@@ -15,19 +15,19 @@ const pokemonsReducers = (state = initinialState, action) => {
     case FETCH_POKEMONS_PENDING:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case FETCH_POKEMONS_SUCCESS:
       return {
         ...state,
         loading: false,
-        pokemons: action.payload
+        pokemons: action.payload,
       };
     case FETCH_POKEMONS_ERROR:
       return {
         ...state,
         loading: false,
-        error: action.error
+        error: action.error,
       };
     default:
       return state;

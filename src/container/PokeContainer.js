@@ -1,9 +1,9 @@
 /* eslint-disable no-shadow */
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import PokeList from "../components/List/PokemonList";
-import { fecthPokemons } from "../redux/actions";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PokeList from '../components/List/PokemonList';
+import { fecthPokemons } from '../redux/actions';
 
 class PokeLayout extends Component {
   componentDidMount() {
@@ -29,14 +29,14 @@ class PokeLayout extends Component {
 }
 PokeLayout.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  fecthPokemons: PropTypes.func.isRequired
+  fecthPokemons: PropTypes.func.isRequired,
 };
-const mapStateToProps = state => ({
-  pokemons: state.pokemons
+const mapStateToProps = (state) => ({
+  pokemons: state.pokemons,
 });
 
 const mapDispatchToProps = {
-  fecthPokemons
+  fecthPokemons,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokeLayout);
