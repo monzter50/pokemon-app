@@ -1,25 +1,25 @@
 .percentage {
-    &-hp {
-        background: var(--hp);
-    }
+  &-hp {
+    background: var(--hp);
+  }
 
-    &-speed {
-        background: var(--speed);
-    }
+  &-speed {
+    background: var(--speed);
+  }
 
-    &-special-attack {
-        background: var(--sattack);
-    }
+  &-special-attack {
+    background: var(--sattack);
+  }
 
-    &-special-defense {
-        background: var(--sdefense);
-    }
+  &-special-defense {
+    background: var(--sdefense);
+  }
 
-    &-defense {
-        background: var(--defense);
-    }
+  &-defense {
+    background: var(--defense);
+  }
 
-    &-attack {
-        background: var(--attack);
-    }
+  &-attack {
+    background: var(--attack);
+  }
 }
