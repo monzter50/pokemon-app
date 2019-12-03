@@ -12,25 +12,25 @@ const initinialState = {
 
 const pokemonsReducers = (state = initinialState, action) => {
   switch (action.type) {
-    case FETCH_POKEMONS_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
-    case FETCH_POKEMONS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        pokemons: action.payload,
-      };
-    case FETCH_POKEMONS_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-      };
-    default:
-      return state;
+  case FETCH_POKEMONS_PENDING:
+    return {
+      ...state,
+      loading: true,
+    };
+  case FETCH_POKEMONS_SUCCESS:
+    return {
+      ...state,
+      loading: false,
+      pokemons: action.payload,
+    };
+  case FETCH_POKEMONS_ERROR:
+    return {
+      ...state,
+      loading: false,
+      error: action.error,
+    };
+  default:
+    return state;
   }
 };
 export default pokemonsReducers;

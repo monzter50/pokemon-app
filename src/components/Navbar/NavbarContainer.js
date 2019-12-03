@@ -1,5 +1,5 @@
-import React from "react";
-import Pokeball from "../SVG/pokeballs.svg";
+import React from 'react';
+import Pokeball from '../SVG/pokeballs.svg';
 
 const NavbarContainer = () => (
   <nav className="navbar">

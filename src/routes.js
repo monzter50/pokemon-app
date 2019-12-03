@@ -1,14 +1,14 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
-} from "react-router-dom";
+  Switch,
+} from 'react-router-dom';
 
-const Home = lazy(() => import("./container/PokeContainer"));
-const Details = lazy(() => import("./container/Details"));
-const PublicRoutes = history => (
+const Home = lazy(() => import('./container/PokeContainer'));
+const Details = lazy(() => import('./container/Details'));
+const PublicRoutes = (history) => (
   <Router history={history}>
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>

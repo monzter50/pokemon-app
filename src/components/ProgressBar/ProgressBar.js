@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const ProgressBar = props => {
+const ProgressBar = (props) => {
   const { percentage, text } = props;
   return (
     <div className="progress-bar">
@@ -18,6 +18,6 @@ const ProgressBar = props => {
 
 ProgressBar.propTypes = {
   percentage: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
 };
 export default ProgressBar;

@@ -62,7 +62,7 @@ export const fecthPokemon = (name) => async (dispatch) => {
 };
 
 export const fecthSpecies = (name) =>
-  // eslint-disable-next-line implicit-arrow-linebreak
+// eslint-disable-next-line implicit-arrow-linebreak
   async (dispatch) => {
     try {
       dispatch(fetchSelectPokemonPending());

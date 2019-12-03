@@ -5,8 +5,8 @@ const initinialState = {
 };
 const findPokemon = (state = initinialState, action) => {
   switch (action.type) {
-    default:
-      return state;
+  default:
+    return state;
   }
 };
 export default findPokemon;

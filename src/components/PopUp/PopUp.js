@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const PopUp = props => {
+const PopUp = (props) => {
   const { species_name, prevSpecies_name, min_evo } = props;
   return (
     <article className="popup">
@@ -44,6 +44,6 @@ const PopUp = props => {
 PopUp.propTypes = {
   species_name: PropTypes.string.isRequired,
   prevSpecies_name: PropTypes.string.isRequired,
-  min_evo: PropTypes.number.isRequired
+  min_evo: PropTypes.number.isRequired,
 };
 export default PopUp;

@@ -1,11 +1,11 @@
 /* eslint-disable react/forbid-prop-types */
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import getEvolutions from "../../helpers/getEvolutions";
-import PopUp from "../PopUp/PopUp";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import getEvolutions from '../../helpers/getEvolutions';
+import PopUp from '../PopUp/PopUp';
 
-const EvolutionList = props => {
+const EvolutionList = (props) => {
   const { evolution } = props;
   const evoChain = getEvolutions(evolution.chain);
   return (
@@ -32,7 +32,7 @@ const EvolutionList = props => {
   );
 };
 EvolutionList.propTypes = {
-  evolution: PropTypes.any.isRequired
+  evolution: PropTypes.any.isRequired,
 };
 function mapStateToProps(state) {
   return { evolution: state.selectPokemonReducer.evolution };
