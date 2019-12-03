@@ -4,8 +4,8 @@ import pokemonsReducers from './pokemons';
 import findPokemon from './findPokemon';
 
 const rootReducer = combineReducers({
-  selectPokemonReducer,
-  pokemonsReducers,
-  findPokemon,
+	selectPokemonReducer,
+	pokemonsReducers,
+	findPokemon,
 });
 export default rootReducer;

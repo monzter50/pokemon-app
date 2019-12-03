@@ -1,11 +1,20 @@
 {
-  "extends": ["airbnb"],
-  "plugins": ["react", "jsx-a11y", "import"],
-  "parser": "babel-eslint",
-  "rules": {
-    "react/jsx-filename-extension": [1, {
-      "extensions": [".js", ".jsx"]
-    }],
-    "linebreak-style": 0
-  }
+	"extends": ["airbnb"],
+	"plugins": ["react", "jsx-a11y", "import"],
+	"parser": "babel-eslint",
+	"rules": {
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [".js", ".jsx"]
+			}
+		],
+		"linebreak-style": 0,
+		"indent": ["error", "tab"],
+		"react/jsx-indent": ["error", "tab"],
+		"react/jsx-indent-props": ["error", "tab"],
+		"no-tabs": ["error", {
+			"allowIndentationTabs": true
+		}]
+	}
 }
