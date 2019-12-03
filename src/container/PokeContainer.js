@@ -6,37 +6,37 @@ import PokeList from '../components/List/PokemonList';
 import { fecthPokemons } from '../redux/actions';
 
 class PokeLayout extends Component {
-	componentDidMount() {
-		const { fecthPokemons } = this.props;
-		fecthPokemons();
-	}
+  componentDidMount() {
+    const { fecthPokemons } = this.props;
+    fecthPokemons();
+  }
 
-	render() {
-		return (
-			<>
-				<PokeList />
-				<footer className="layout-footer">
-					<article className="footer-description container">
-						<p>Monster Codes</p>
-						<div>
-							<a href="https://github.com/monzter50">My github</a>
-						</div>
-					</article>
-				</footer>
-			</>
-		);
-	}
+  render() {
+    return (
+      <>
+        <PokeList />
+        <footer className="layout-footer">
+          <article className="footer-description container">
+            <p>Monster Codes</p>
+            <div>
+              <a href="https://github.com/monzter50">My github</a>
+            </div>
+          </article>
+        </footer>
+      </>
+    );
+  }
 }
 PokeLayout.propTypes = {
-	// eslint-disable-next-line react/forbid-prop-types
-	fecthPokemons: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  fecthPokemons: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
-	pokemons: state.pokemons,
+  pokemons: state.pokemons,
 });
 
 const mapDispatchToProps = {
-	fecthPokemons,
+  fecthPokemons,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokeLayout);

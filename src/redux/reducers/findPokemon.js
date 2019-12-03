@@ -1,12 +1,12 @@
 const initinialState = {
-	pokemons: [],
-	loading: false,
-	error: false,
+  pokemons: [],
+  loading: false,
+  error: false,
 };
 const findPokemon = (state = initinialState, action) => {
-	switch (action.type) {
-	default:
-		return state;
-	}
+  switch (action.type) {
+  default:
+    return state;
+  }
 };
 export default findPokemon;
