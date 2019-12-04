@@ -20,20 +20,19 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src",
-    "lint:fix": "eslint src && prettier-eslint '**/*.js' --write"
+    "lint": "eslint src"
   },
   "eslintConfig": {
     "extends": "airbnb"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lintlint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.js": [
-      "npm run lint && eslint --fix",
+      "eslint src --fix",
       "git add"
     ]
   },
