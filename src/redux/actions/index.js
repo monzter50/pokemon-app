@@ -41,7 +41,7 @@ export const fecthPokemons = () => async (dispatch) => {
   try {
     dispatch(fetchPokemonsPending());
     const data = await fetch(
-      'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10',
+      `${process.env.REACT_APP_BASE_API_URL}/pokemon/?offset=0&limit=10`,
     ).then((response) => response.json());
     dispatch(fetchPokemonsSuccess(data.results));
   } catch (e) {
