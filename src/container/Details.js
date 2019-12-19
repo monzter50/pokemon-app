@@ -19,7 +19,7 @@ class Details extends Component {
   componentDidMount() {
     const { location, fecthPokemon, fecthEvolution } = this.props;
     fecthPokemon(location.state.name);
-    fecthEvolution(location.state.id_Chain);
+    fecthEvolution(location.state.idChain);
   }
 
   render() {
