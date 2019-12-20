@@ -6,6 +6,7 @@ import PokeCard from '../Card/PokemonCard';
 import { fecthPokemons } from '../../redux/actions';
 import AutoComplete from '../AutoComplete/AutoComplete';
 import searchingFor from '../../helpers/searchTerms';
+import ListField from '../ListField/ListField';
 
 class PokemonList extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class PokemonList extends Component {
       pokemonList: [],
       text: '',
       active: false,
+      isOpen: false,
     };
     this.onTextChange = this.onTextChange.bind(this);
     this.onTextSelect = this.onTextSelect.bind(this);
@@ -65,9 +67,15 @@ class PokemonList extends Component {
     this.setState((prevState) => ({ active: !prevState.active }));
   }
 
+  handleOpen = (isOpen) => {
+    this.setState({ isOpen });
+  }
+
   render() {
     const { pokemons } = this.props;
-    const { pokemonList, text, active } = this.state;
+    const {
+      pokemonList, text, active, isOpen,
+    } = this.state;
     if (!pokemons) return null;
 
     return (
@@ -77,9 +85,12 @@ class PokemonList extends Component {
             <AutoComplete
               pokemonList={pokemonList}
               onTextChange={this.onTextChange}
-              onTextSelect={this.onTextSelect}
+              handleOpen={this.handleOpen}
               text={text}
-            />
+              isOpen={isOpen}
+            >
+              <ListField list={pokemonList} isOpen={isOpen} onTextSelect={this.onTextSelect} />
+            </AutoComplete>
             <div className="list-info">
               <div
                 className={`list-bars ${!active ? 'active' : ''}`}
