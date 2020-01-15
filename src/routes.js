@@ -6,7 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
-const Home = lazy(() => import('./container/PokeLayout'));
+const Home = lazy(() => import('./container/PokemonList'));
 const Details = lazy(() => import('./container/Details'));
 const PublicRoutes = (history) => (
   <Router history={history}>
