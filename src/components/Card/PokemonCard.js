@@ -16,7 +16,7 @@ class PokeCard extends Component {
 
   render() {
     const {
-      details, name, id, chain,
+      details, name, chain,
     } = this.props;
     if (!details[name]) return null;
     if (!chain[name]) return null;
@@ -27,7 +27,7 @@ class PokeCard extends Component {
       chain[name].evolution_chain.url.split('/').length - 2
     ];
     return (
-      <div className="card" key={id}>
+      <div className="card" key={name}>
         <div className="card__header">
           <div className={`avatar type--${type[0]}`}>
             <img
@@ -79,7 +79,6 @@ PokeCard.propTypes = {
   fecthPokemon: PropTypes.func.isRequired,
   fecthSpecies: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
   chain: PropTypes.array.isRequired,
   details: PropTypes.array.isRequired,
 };

@@ -8,6 +8,7 @@ import ListField from '../components/ListField/ListField';
 import { fecthPokemons } from '../redux/actions';
 import AutoComplete from '../components/AutoComplete/AutoComplete';
 import searchingFor from '../helpers/searchTerms';
+import InfiniteScroll from '../components/InfiniteScroll/InfiniteScroll';
 
 class PokemonList extends Component {
   constructor(props) {
@@ -118,9 +119,8 @@ class PokemonList extends Component {
               </div>
             </div>
           </div>
-          <div className={active ? 'cards' : 'list'}>
-            {this.renderPokemons()}
-          </div>
+          <InfiniteScroll active={active} />
+          {/* {this.renderPokemons()} */}
         </div>
       </div>
     );
