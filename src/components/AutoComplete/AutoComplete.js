@@ -23,7 +23,7 @@ class SearchList extends Component {
             onTextSelect(pokemon.name);
             this.setState({ isOpen: false });
           }}
-          onKeyPress={onTextSelect(pokemon.name)}
+          onKeyPress={this.handleKeyPress}
           role="searchbox"
           tabIndex="0"
         >
@@ -68,9 +68,7 @@ class SearchList extends Component {
           placeholder="Search"
           value={text}
         />
-        {isOpen && (
-          <div className="ui-list">{this.renderPokemons()}</div>
-        )}
+        {isOpen && <div className="ui-list">{this.renderPokemons()}</div>}
       </div>
     );
   }

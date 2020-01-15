@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PokeCard from '../Card/PokemonCard';
 import { fecthPokemons } from '../../redux/actions';
 import AutoComplete from '../AutoComplete/AutoComplete';
+import searchingFor from '../../helpers/searchTerms';
 
 class PokemonList extends Component {
   constructor(props) {
@@ -21,36 +22,20 @@ class PokemonList extends Component {
 
   onTextSelect(text) {
     const { pokemons } = this.props;
-    let pokemonList = [];
-    this.setState({ text });
-    if (text.length > 0) {
-      pokemonList = pokemons.filter(text);
-      this.setState({
-        pokemonList,
-      });
-    } else {
-      pokemonList = pokemons;
-      this.setState({
-        pokemonList,
-      });
-    }
+    const newPokemonList = pokemons.filter(searchingFor(text)).map((pokemon) => pokemon);
+    this.setState({
+      text,
+      pokemonList: newPokemonList,
+    });
   }
 
   onTextChange(text) {
     const { pokemons } = this.props;
-    let pokemonList = [];
-    this.setState({ text });
-    if (text.length > 0) {
-      pokemonList = pokemons.filter(text);
-      this.setState({
-        pokemonList,
-      });
-    } else {
-      pokemonList = pokemons;
-      this.setState({
-        pokemonList,
-      });
-    }
+    const newPokemonList = pokemons.filter(searchingFor(text)).map((pokemon) => pokemon);
+    this.setState({
+      text,
+      pokemonList: newPokemonList,
+    });
   }
 
   renderPokemons() {
