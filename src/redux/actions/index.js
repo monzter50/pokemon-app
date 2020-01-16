@@ -43,7 +43,7 @@ export const fecthPokemons = () => async (dispatch) => {
     const data = await fetch(
       `${process.env.REACT_APP_BASE_API_URL}/pokemon/?offset=0&limit=10`,
     ).then((response) => response.json());
-    console.log(data);
+    // console.log(data);
     dispatch(fetchPokemonsSuccess(data.results));
   } catch (e) {
     dispatch(fetchPokemonsError(e));

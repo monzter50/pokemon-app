@@ -77,7 +77,7 @@ class PokemonList extends Component {
     const { pokemons } = this.props;
     const { pokemonList, text, active } = this.state;
     if (!pokemons) return null;
-    console.log(pokemonList);
+    // console.log(pokemonList);
     return (
       <div className="layout-body">
         <div className="container">
@@ -92,7 +92,7 @@ class PokemonList extends Component {
             >
               <ListField list={pokemonList} onTextSelect={this.onTextSelect} isOpen={active} />
             </AutoComplete>
-            <div className="list-info">
+            {/* <div className="list-info">
               <div
                 className={`list-bars ${!active ? 'active' : ''}`}
                 onClick={this.handleClick}
@@ -117,10 +117,9 @@ class PokemonList extends Component {
                 <span />
                 <span />
               </div>
-            </div>
+            </div> */}
           </div>
           <InfiniteScroll active={active} />
-          {/* {this.renderPokemons()} */}
         </div>
       </div>
     );

@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { fecthPokemon, fecthSpecies } from '../../redux/actions';
-import ProgressBar from '../ProgressBar/ProgressBar';
+// import ProgressBar from '../ProgressBar/ProgressBar';
 
 class PokeCard extends Component {
   componentDidMount() {
@@ -20,15 +20,16 @@ class PokeCard extends Component {
     } = this.props;
     if (!details[name]) return null;
     if (!chain[name]) return null;
-    const type = details[name].types
-      ? details[name].types.map((tp) => tp.type.name)
-      : ['default'];
-    const idChain = chain[name].evolution_chain.url.split('/')[
-      chain[name].evolution_chain.url.split('/').length - 2
-    ];
+    // const type = details[name].types
+    //   ? details[name].types.map((tp) => tp.type.name)
+    //   : ['default'];
+    // const idChain = chain[name].evolution_chain.url.split('/')[
+    //   chain[name].evolution_chain.url.split('/').length - 2
+    // ];
     return (
       <div className="card" key={name}>
-        <div className="card__header">
+        <img className="card-avatar" src={`https://img.pokemondb.net/artwork/${name}.jpg`} alt="" />
+        {/* <div className="card__header">
           <div className={`avatar type--${type[0]}`}>
             <img
               src={details[name].sprites.front_default}
@@ -70,7 +71,7 @@ class PokeCard extends Component {
           >
 						View Details
           </NavLink>
-        </div>
+        </div> */}
       </div>
     );
   }
