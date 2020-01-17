@@ -4,7 +4,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card from '../Card/PokemonCard';
+import Card from '../Card';
 
 class InfiniteScroll extends Component {
     _isMounted = false;
@@ -33,7 +33,7 @@ class InfiniteScroll extends Component {
       const { scrolling } = this.state;
       if (scrolling) return;
       const lastUser = document.querySelector(
-        'div.poke-cards > div.card:last-child',
+        'div.poke-cards > div.element:last-child',
       );
       //   console.log(lastUser);
 
@@ -58,7 +58,7 @@ class InfiniteScroll extends Component {
   loadMore = () => {
     this.setState(
       (prevState) => ({
-        prevTotal: prevState.prevTotal + 10,
+        prevTotal: prevState.prevTotal + 5,
       }),
       this.loadUsers,
     );

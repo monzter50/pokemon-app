@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import PokeCard from '../components/Card/PokemonCard';
+import PokeCard from '../components/Card';
 import ListField from '../components/ListField/ListField';
 import { fecthPokemons } from '../redux/actions';
 import AutoComplete from '../components/AutoComplete/AutoComplete';
