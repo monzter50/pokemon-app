@@ -18,10 +18,11 @@ const pokemonsReducers = (state = initinialState, action) => {
       loading: true,
     };
   case FETCH_POKEMONS_SUCCESS:
+    console.log(state.pokemons);
     return {
       ...state,
       loading: false,
-      pokemons: action.payload,
+      pokemons: [...state.pokemons, ...action.payload],
     };
   case FETCH_POKEMONS_ERROR:
     return {

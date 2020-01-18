@@ -1,5 +1,8 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
+import fetchClient from '../../settings/httpClient';
+import { GET_SPECIES, GET_POKEMON, GET_EVOLUTION } from '../../settings/endpoints';
+
 export const FETCH_POKEMONS_PENDING = 'FETCH_POKEMONS_PENDING';
 export const FETCH_POKEMONS_SUCCESS = 'FETCH_POKEMONS_SUCCESS';
 export const FETCH_POKEMONS_ERROR = 'FETCH_POKEMONS_ERROR';
@@ -37,13 +40,10 @@ const fetchSelectPokemonPending = () => ({
   type: FETCH_SELECT_POKEMON_PENDING,
 });
 
-export const fecthPokemons = () => async (dispatch) => {
+export const fecthPokemons = (prevOffset) => async (dispatch) => {
   try {
     dispatch(fetchPokemonsPending());
-    const data = await fetch(
-      `${process.env.REACT_APP_BASE_API_URL}/pokemon/?offset=0&limit=10`,
-    ).then((response) => response.json());
-    // console.log(data);
+    const data = await fetchClient.get(`${process.env.REACT_APP_BASE_API_URL}${GET_POKEMON}/?offset=`, prevOffset);
     dispatch(fetchPokemonsSuccess(data.results));
   } catch (e) {
     dispatch(fetchPokemonsError(e));
@@ -53,9 +53,7 @@ export const fecthPokemons = () => async (dispatch) => {
 export const fecthPokemon = (name) => async (dispatch) => {
   try {
     dispatch(fetchPending());
-    const data = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${name}/`,
-    ).then((response) => response.json());
+    const data = await fetchClient.get(`${process.env.REACT_APP_BASE_API_URL}${GET_POKEMON}/`, name);
     dispatch(fetchSelectPokemonSuccess(data));
   } catch (e) {
     dispatch(fetchSelectPokemonError(e));
@@ -67,9 +65,7 @@ export const fecthSpecies = (name) =>
   async (dispatch) => {
     try {
       dispatch(fetchSelectPokemonPending());
-      const data = await fetch(
-        `https://pokeapi.co/api/v2/pokemon-species/${name}/`,
-      ).then((response) => response.json());
+      const data = await fetchClient.get(`${process.env.REACT_APP_BASE_API_URL}${GET_SPECIES}/`, name);
       const { evolution_chain, habitat } = data;
       dispatch(fecthChainSuccess({ name, evolution_chain, habitat }));
     } catch (e) {
@@ -79,9 +75,7 @@ export const fecthSpecies = (name) =>
 export const fecthEvolution = (id) => async (dispatch) => {
   try {
     dispatch(fetchSelectPokemonPending());
-    const data = await fetch(
-      `https://pokeapi.co/api/v2/evolution-chain/${id}/`,
-    ).then((response) => response.json());
+    const data = await fetchClient.get(`${process.env.REACT_APP_BASE_API_URL}${GET_EVOLUTION}/`, id);
     dispatch(fecthEvolutionSuccess(data));
   } catch (e) {
     dispatch(fetchSelectPokemonError(e));

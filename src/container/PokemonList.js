@@ -25,7 +25,7 @@ class PokemonList extends Component {
 
   componentDidMount() {
     const { fecthPokemons } = this.props;
-    fecthPokemons();
+    fecthPokemons(0);
   }
 
   onTextSelect(text) {

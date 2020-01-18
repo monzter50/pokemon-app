@@ -1,9 +1,12 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fecthPokemons } from '../../redux/actions';
 import Card from '../Card';
 
 class InfiniteScroll extends Component {
@@ -12,7 +15,7 @@ class InfiniteScroll extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        pokemons: [],
+        // auxPokemons: [],
         prevTotal: 0,
         scrolling: false,
         loading: false,
@@ -21,7 +24,6 @@ class InfiniteScroll extends Component {
 
     componentDidMount() {
       this._isMounted = true;
-      this.loadUsers();
       this.scrollListener = window.addEventListener('scroll', (e) => this.handleScrolling(e));
     }
 
@@ -35,8 +37,6 @@ class InfiniteScroll extends Component {
       const lastUser = document.querySelector(
         'div.poke-cards > div.element:last-child',
       );
-      //   console.log(lastUser);
-
       if (!lastUser) return;
       const lastUserOffset = lastUser.offsetTop + lastUser.clientHeight;
       const pageOffset = window.pageYOffset + window.innerHeight;
@@ -45,27 +45,25 @@ class InfiniteScroll extends Component {
     };
 
   loadUsers = () => {
-    const { prevTotal, pokemons } = this.state;
+    const { prevTotal } = this.state;
+    const { fecthPokemons } = this.props;
     this.setState({ loading: true });
-    fetch(`${process.env.REACT_APP_BASE_API_URL}/pokemon/?offset=${prevTotal}`)
-      .then((response) => response.json())
-      .then((myJson) => this.setState({
-        pokemons: [...pokemons, ...myJson.results],
-      }))
-      .finally(() => this.setState({ loading: false }));
+    fecthPokemons(prevTotal);
   };
 
   loadMore = () => {
     this.setState(
       (prevState) => ({
-        prevTotal: prevState.prevTotal + 5,
+        prevTotal: prevState.prevTotal + 20,
       }),
       this.loadUsers,
     );
   };
 
   render() {
-    const { loading, pokemons } = this.state;
+    const { loading, prevTotal } = this.state;
+    const { pokemons } = this.props;
+    console.log(prevTotal, pokemons);
     return (
       <>
         <div className="poke-cards cards">
@@ -94,4 +92,13 @@ InfiniteScroll.propTypes = {
   loading: PropTypes.bool.isRequired,
   fecthPokemons: PropTypes.func.isRequired,
 };
-export default InfiniteScroll;
+const mapStateToProps = (state) => ({
+  loading: state.pokemonsReducers.loading,
+  pokemons: state.pokemonsReducers.pokemons,
+});
+
+const mapDispatchToProps = {
+  fecthPokemons,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InfiniteScroll);
