@@ -1,85 +1,45 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
-import React, { Component } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fecthPokemons } from '../../redux/actions';
 import Card from '../Card';
-import {
-  ListCards,
-} from './styles';
+import { ListCards } from './styles';
 
-
-class InfiniteScroll extends Component {
-  _isMounted = false;
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      // auxPokemons: [],
-      prevTotal: 0,
-      scrolling: false,
-      loading: false,
-    };
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    this.scrollListener = window.addEventListener('scroll', (e) => this.handleScrolling(e));
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
-  handleScrolling = () => {
-    const { scrolling } = this.state;
-    if (scrolling) return;
-    const lastUser = document.querySelector(
-      'div.poke-cards > div.element:last-child',
-    );
-    if (!lastUser) return;
-    const lastUserOffset = lastUser.offsetTop + lastUser.clientHeight;
-    const pageOffset = window.pageYOffset + window.innerHeight;
-    const bottomOffset = 20;
-    if (pageOffset > lastUserOffset - bottomOffset) this.loadMore();
-  };
-
-  loadUsers = () => {
-    const { prevTotal } = this.state;
-    const { fecthPokemons } = this.props;
-    this.setState({ loading: true });
+function InfiniteScroll(props) {
+  const [prevTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const _isMounted = useRef(true);
+  const { pokemons, fecthPokemons } = props;
+  const loadPokemons = () => {
+    setLoading(true);
     fecthPokemons(prevTotal);
   };
+  useEffect(() => {
+    if (_isMounted.current) {
+      loadPokemons();
+    }
+  }, [_isMounted]);
+  useEffect(() => () => (_isMounted.current = false), []);
 
-  loadMore = () => {
-    this.setState(
-      (prevState) => ({
-        prevTotal: prevState.prevTotal + 20,
-      }),
-      this.loadUsers,
-    );
-  };
 
-  render() {
-    const { loading, prevTotal } = this.state;
-    const { pokemons } = this.props;
-    console.log(prevTotal, pokemons);
-    return (
-      <div>
-        <ListCards>
-          {pokemons.map((pokemon) => (
-            <Card name={pokemon.name} key={`$pokem-${pokemon.name}`} />
-          ))}
-        </ListCards>
-        {loading && <div className="loading">...loading</div>}
-      </div>
-    );
-  }
+  return (
+    <div>
+      <ListCards>
+        {pokemons.map((pokemon) => (
+          <Card name={pokemon.name} key={`$pokem-${pokemon.name}`} />
+        ))}
+      </ListCards>
+      {loading && <div className="loading">...loading</div>}
+    </div>
+  );
 }
+
 InfiniteScroll.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   pokemons: PropTypes.array.isRequired,
