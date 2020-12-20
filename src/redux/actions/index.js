@@ -44,6 +44,7 @@ export const fecthPokemons = (prevOffset) => async (dispatch) => {
   try {
     dispatch(fetchPokemonsPending());
     const data = await fetchClient.get(`${process.env.REACT_APP_BASE_API_URL}${GET_POKEMON}/?offset=`, prevOffset);
+    console.log(data);
     dispatch(fetchPokemonsSuccess(data.results));
   } catch (e) {
     dispatch(fetchPokemonsError(e));

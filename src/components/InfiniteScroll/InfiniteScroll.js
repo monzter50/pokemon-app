@@ -8,41 +8,45 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fecthPokemons } from '../../redux/actions';
 import Card from '../Card';
+import {
+  ListCards,
+} from './styles';
+
 
 class InfiniteScroll extends Component {
-    _isMounted = false;
+  _isMounted = false;
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        // auxPokemons: [],
-        prevTotal: 0,
-        scrolling: false,
-        loading: false,
-      };
-    }
-
-    componentDidMount() {
-      this._isMounted = true;
-      this.scrollListener = window.addEventListener('scroll', (e) => this.handleScrolling(e));
-    }
-
-    componentWillUnmount() {
-      this._isMounted = false;
-    }
-
-    handleScrolling = () => {
-      const { scrolling } = this.state;
-      if (scrolling) return;
-      const lastUser = document.querySelector(
-        'div.poke-cards > div.element:last-child',
-      );
-      if (!lastUser) return;
-      const lastUserOffset = lastUser.offsetTop + lastUser.clientHeight;
-      const pageOffset = window.pageYOffset + window.innerHeight;
-      const bottomOffset = 20;
-      if (pageOffset > lastUserOffset - bottomOffset) this.loadMore();
+  constructor(props) {
+    super(props);
+    this.state = {
+      // auxPokemons: [],
+      prevTotal: 0,
+      scrolling: false,
+      loading: false,
     };
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    this.scrollListener = window.addEventListener('scroll', (e) => this.handleScrolling(e));
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  handleScrolling = () => {
+    const { scrolling } = this.state;
+    if (scrolling) return;
+    const lastUser = document.querySelector(
+      'div.poke-cards > div.element:last-child',
+    );
+    if (!lastUser) return;
+    const lastUserOffset = lastUser.offsetTop + lastUser.clientHeight;
+    const pageOffset = window.pageYOffset + window.innerHeight;
+    const bottomOffset = 20;
+    if (pageOffset > lastUserOffset - bottomOffset) this.loadMore();
+  };
 
   loadUsers = () => {
     const { prevTotal } = this.state;
@@ -65,24 +69,14 @@ class InfiniteScroll extends Component {
     const { pokemons } = this.props;
     console.log(prevTotal, pokemons);
     return (
-      <>
-        <div className="poke-cards cards">
-
-          {
-
-            pokemons.map((pokemon) => (
-              <Card name={pokemon.name} />
-            ))
-
-          }
-        </div>
-        {loading && (
-          <div className="loading">
-            ...loading
-          </div>
-        )}
-
-      </>
+      <div>
+        <ListCards>
+          {pokemons.map((pokemon) => (
+            <Card name={pokemon.name} key={`$pokem-${pokemon.name}`} />
+          ))}
+        </ListCards>
+        {loading && <div className="loading">...loading</div>}
+      </div>
     );
   }
 }
