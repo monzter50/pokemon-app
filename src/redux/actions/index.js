@@ -23,9 +23,10 @@ const fetchPending = () => ({ type: FETCH_PENDING });
 const fecthEvolutionSuccess = (payload) => ({ type: FECHT_EVOLUTION, payload });
 
 const fetchPokemonsPending = () => ({ type: FETCH_POKEMONS_PENDING });
-const fetchPokemonsSuccess = (payload) => ({
+const fetchPokemonsSuccess = (payload, count) => ({
   type: FETCH_POKEMONS_SUCCESS,
   payload,
+  count,
 });
 const fetchPokemonsError = (error) => ({ type: FETCH_POKEMONS_ERROR, error });
 const fetchSelectPokemonSuccess = (payload) => ({
@@ -45,7 +46,7 @@ export const fecthPokemons = (prevOffset) => async (dispatch) => {
     dispatch(fetchPokemonsPending());
     const data = await fetchClient.get(`${process.env.REACT_APP_BASE_API_URL}${GET_POKEMON}/?offset=`, prevOffset);
     console.log(data);
-    dispatch(fetchPokemonsSuccess(data.results));
+    dispatch(fetchPokemonsSuccess(data.results, data.count));
   } catch (e) {
     dispatch(fetchPokemonsError(e));
   }

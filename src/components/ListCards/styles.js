@@ -3,7 +3,7 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
-export const ListCards = styled.div`
+export const List = styled.div`
     display:grid;
     grid-gap:1rem;
     grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); 

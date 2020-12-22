@@ -22,7 +22,8 @@ const pokemonsReducers = (state = initinialState, action) => {
     return {
       ...state,
       loading: false,
-      pokemons: [...state.pokemons, ...action.payload],
+      pokemons: action.payload,
+      count: action.count,
     };
   case FETCH_POKEMONS_ERROR:
     return {
